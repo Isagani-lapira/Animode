@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
-
+import android.widget.Button;
+import android.widget.EditText;
 
 
 public class loginpage extends AppCompatActivity {
 
+    private EditText etEmail, etPass;
+    private Button signin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +25,8 @@ public class loginpage extends AppCompatActivity {
     }
 
     private void initialize() {
-
+        etEmail = findViewById(R.id.etEmail);
+        etPass = findViewById(R.id.etPass);
+        signin = findViewById(R.id.signin);
     }
 }
