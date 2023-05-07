@@ -28,5 +28,7 @@ public class loginpage extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         etPass = findViewById(R.id.etPass);
         signin = findViewById(R.id.signin);
+
+        signin.setOnClickListener(v -> {});
     }
 }
