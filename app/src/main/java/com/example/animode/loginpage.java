@@ -14,6 +14,8 @@ public class loginpage extends AppCompatActivity {
     private EditText etEmail, etPass;
     private TextView tvRegister;
     private Button signin;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +24,6 @@ public class loginpage extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.login_activity);
-
         initialize();
     }
 
