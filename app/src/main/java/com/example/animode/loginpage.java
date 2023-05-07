@@ -22,7 +22,6 @@ public class loginpage extends AppCompatActivity {
     }
 
     private void initialize() {
-        sadfsadfsadfsadf
 
     }
 }
