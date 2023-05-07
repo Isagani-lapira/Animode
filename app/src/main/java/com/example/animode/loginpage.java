@@ -6,11 +6,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class loginpage extends AppCompatActivity {
 
     private EditText etEmail, etPass;
+    private TextView tvRegister;
     private Button signin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class loginpage extends AppCompatActivity {
     private void initialize() {
         etEmail = findViewById(R.id.etEmail);
         etPass = findViewById(R.id.etPass);
+        tvRegister = findViewById(R.id.tvRegister);
         signin = findViewById(R.id.signin);
 
         signin.setOnClickListener(v -> {});
