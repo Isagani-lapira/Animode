@@ -7,7 +7,7 @@
         <item name="colorOnPrimary">@color/white_color</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">#003700B3</item>
+        <item name="android:statusBarColor">@color/primary_color</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

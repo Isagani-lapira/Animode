@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/wallpaper"
     android:gravity="center"
     android:paddingHorizontal="20dp"
     tools:context=".loginpage">
@@ -16,10 +15,6 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src=""/>
 
         <TextView
             android:id="@+id/gege"
@@ -89,13 +84,14 @@
 
         <TextView
             android:id="@+id/tvRegister"
-            android:textColor="@color/accent_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:layout_marginHorizontal="5dp"
             android:layout_gravity="bottom"
-            android:text="@string/register" />
+            android:layout_marginHorizontal="5dp"
+            android:text="@string/register"
+            android:textColor="@color/accent_color"
+            android:textStyle="bold"
+            tools:ignore="TextContrastCheck" />
     </LinearLayout>
 
 </LinearLayout>

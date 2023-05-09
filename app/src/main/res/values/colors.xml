@@ -6,4 +6,5 @@
     <color name="border_color">#959595</color>
     <color name="hint_color">#d4d4d4</color>
     <color name="disable_color">#525252</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

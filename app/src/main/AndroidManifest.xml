@@ -13,7 +13,14 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".Registration_Activity"
+            android:name=".homepage"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".registrationpage"
             android:exported="false" />
         <activity
             android:name=".loginpage"
