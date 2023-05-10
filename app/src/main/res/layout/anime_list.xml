@@ -1,10 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:id="@+id/LL"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="15dp">
 
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"/>
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp">
+
+        <ImageView
+            android:id="@+id/ivImage"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvAnime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/anime_name"
+        android:textStyle="bold"
+        android:textSize="10dp"
+        android:gravity="center"
+        />
+    <TextView
+        android:id="@+id/tvEpisodes"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/anime_name"
+        android:textSize="8sp"/>
 </LinearLayout>

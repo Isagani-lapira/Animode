@@ -11,4 +11,6 @@
     <string name="home">Home</string>
     <string name="to_watch">To watch</string>
     <string name="profile">profile</string>
+    <string name="anime_name">anime name</string>
+    <string name="episodes">episodes</string>
 </resources>
