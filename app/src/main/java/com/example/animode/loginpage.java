@@ -27,6 +27,7 @@ public class loginpage extends AppCompatActivity {
         setContentView(R.layout.login_activity);
         initialize();
         listener();
+
     }
 
     private void listener() {
