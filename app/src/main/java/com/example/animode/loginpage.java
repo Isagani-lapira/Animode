@@ -1,5 +1,6 @@
 package com.example.animode;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -10,6 +11,12 @@ import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class loginpage extends AppCompatActivity {
@@ -18,6 +25,7 @@ public class loginpage extends AppCompatActivity {
     private TextView tvRegister;
     private Button signin;
     private Intent intent;
+    private FirebaseAuth li_auth;
     private final Context context = loginpage.this;
 
 
@@ -67,6 +75,7 @@ public class loginpage extends AppCompatActivity {
 
 
     private void initialize() {
+        li_auth = FirebaseAuth.getInstance();
         etEmail = findViewById(R.id.etEmail);
         etPass = findViewById(R.id.etPass);
         tvRegister = findViewById(R.id.tvRegister);
@@ -74,7 +83,32 @@ public class loginpage extends AppCompatActivity {
     }
 
     private void login() {
-        intent = new Intent(context,homepage.class);
-        startActivity(intent);
+        String u, p;
+
+        u = etEmail.getText().toString().trim();
+        p = etPass.getText().toString().trim();
+
+        if(u.isEmpty()){
+            etEmail.setError("You must enter a username!");
+        }
+
+        if(p.isEmpty()){
+            etPass.setError("You must enter a password!");
+        }
+
+        else {
+            li_auth.signInWithEmailAndPassword(u,p).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+                        Toast.makeText(loginpage.this, "Logged in succesfully!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(loginpage.this, homepage.class));
+                    }
+                    else {
+                        Toast.makeText(loginpage.this, "Log in failed. " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 }

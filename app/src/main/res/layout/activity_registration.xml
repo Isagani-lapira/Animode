@@ -1,8 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context=".registrationpage">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo"
+                android:layout_gravity="center"
+                android:layout_margin=".2in"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="First Name:"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:layout_marginLeft="15dp"
+                android:textColor="#FFFFFF"/>
+
+            <EditText
+                android:id="@+id/reg_etFname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ex: Juan"
+                android:background="@drawable/border_style"
+                android:textSize="20sp"
+                android:padding="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
+
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Last Name:"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:layout_marginLeft="15dp"
+                android:textColor="#FFFFFF"/>
+
+            <EditText
+                android:id="@+id/reg_etLname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ex: Dela Cruz"
+                android:background="@drawable/border_style"
+                android:textSize="20sp"
+                android:padding="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
+
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email Address:"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:layout_marginLeft="15dp"
+                android:textColor="#FFFFFF"/>
+
+            <EditText
+                android:id="@+id/reg_etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ex: juandelacruz@gmail.com"
+                android:background="@drawable/border_style"
+                android:textSize="20sp"
+                android:padding="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
+
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Password:"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:layout_marginLeft="15dp"
+                android:textColor="#FFFFFF"/>
+
+            <EditText
+                android:id="@+id/reg_etPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Must contain at least 8 characters."
+                android:background="@drawable/border_style"
+                android:textSize="20sp"
+                android:padding="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
+
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confirm Password:"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:layout_marginLeft="15dp"
+                android:textColor="#FFFFFF"/>
+
+            <EditText
+                android:id="@+id/reg_etConPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Must contain at least 6 characters."
+                android:background="@drawable/border_style"
+                android:textSize="20sp"
+                android:padding="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
+
+
+
+
+
+            <Button
+                android:id="@+id/reg_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:background="@drawable/reg_btn"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
