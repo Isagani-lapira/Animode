@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class toWatch_tab extends Fragment {
-
+    View view;
 
     public toWatch_tab() {
         // Required empty public constructor
@@ -19,7 +19,11 @@ public class toWatch_tab extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_to_watch_tab, container, false);
+         view = inflater.inflate(R.layout.fragment_to_watch_tab, container, false);
+
+         //initialize
+
+
         // Inflate the layout for this fragment
         return view;
     }

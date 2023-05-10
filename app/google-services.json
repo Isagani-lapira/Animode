@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "1063893162544",
-    "project_id": "animode-bba07",
-    "storage_bucket": "animode-bba07.appspot.com"
+    "project_number": "611614478564",
+    "project_id": "animode-23425",
+    "storage_bucket": "animode-23425.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1063893162544:android:e71f4b7605cd8b69852bf5",
+        "mobilesdk_app_id": "1:611614478564:android:b205038af79cb421109cf1",
         "android_client_info": {
           "package_name": "com.example.animode"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1063893162544-s2n84fonlb4684kk61m3gktrb2f95bnp.apps.googleusercontent.com",
+          "client_id": "611614478564-dmej9h44f8vsopv2f5nuonmbmv7536j2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.animode",
+            "certificate_hash": "ffdcb39473a4f088f6e905e46930fcd865b54f84"
+          }
+        },
+        {
+          "client_id": "611614478564-h6q8lhm7kjo19ev2k7nd5diem3cp2j4c.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCU13CaqNcDZDpVALMojMtDsO5SpHxu33s"
+          "current_key": "AIzaSyAH3NFQDnYLVxosTsaaQzPDD7nMlDwfm9E"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1063893162544-s2n84fonlb4684kk61m3gktrb2f95bnp.apps.googleusercontent.com",
+              "client_id": "611614478564-h6q8lhm7kjo19ev2k7nd5diem3cp2j4c.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
