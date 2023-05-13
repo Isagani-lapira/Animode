@@ -12,14 +12,12 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class homepage extends AppCompatActivity implements CustomAdapter.itemClicked{
 
-    FirebaseAuth auth;
     BottomNavigationView bnNavigation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
-        auth = FirebaseAuth.getInstance();
         initialize();
         listener();
     }
@@ -61,13 +59,4 @@ public class homepage extends AppCompatActivity implements CustomAdapter.itemCli
         startActivity(intent);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        //if not have been login it will redirect to login
-        FirebaseUser currentUser = auth.getCurrentUser();
-        if(currentUser==null)
-            startActivity(new Intent(this,loginpage.class));
-    }
 }

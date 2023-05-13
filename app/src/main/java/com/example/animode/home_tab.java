@@ -2,17 +2,14 @@ package com.example.animode;
 
 import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 import java.util.ArrayList;
@@ -32,7 +29,6 @@ public class home_tab extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,9 +45,6 @@ public class home_tab extends Fragment {
     private void initialize() {
         vvVideo = view.findViewById(R.id.vvVideo);
         setVideo();
-
-
-
     }
 
     @Override
