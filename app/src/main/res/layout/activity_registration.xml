@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context=".registrationpage"
     android:padding="15dp"
-    tools:ignore="hardCodedText">
+    tools:ignore="hardCodedText, UselessParent, Autofill, ContentDescription">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -34,12 +34,12 @@
                 android:textColor="#FFFFFF"/>
 
             <EditText
-                android:id="@+id/reg_etFname"
+                android:id="@+id/etFname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:hint="ex: Juan"
                 android:background="@drawable/border_style"
-                android:textSize="20sp"
                 android:padding="15dp"
                 android:layout_marginBottom="15dp" />
 
@@ -52,12 +52,12 @@
                 android:textColor="#FFFFFF"/>
 
             <EditText
-                android:id="@+id/reg_etLname"
+                android:id="@+id/etLname"
+                android:inputType="text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="ex: Dela Cruz"
                 android:background="@drawable/border_style"
-                android:textSize="20sp"
                 android:padding="15dp"
                 android:layout_marginBottom="15dp" />
 
@@ -71,12 +71,12 @@
                 android:textColor="#FFFFFF"/>
 
             <EditText
-                android:id="@+id/reg_etEmail"
+                android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/ex_juandelacruz_gmail_com"
                 android:background="@drawable/border_style"
-                android:textSize="20sp"
+                android:inputType="textEmailAddress"
                 android:padding="15dp"
                 android:layout_marginBottom="15dp" />
 
@@ -90,17 +90,14 @@
                 android:textColor="#FFFFFF"/>
 
             <EditText
-                android:id="@+id/reg_etPass"
+                android:id="@+id/etPass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:hint="Must contain at least 8 characters."
                 android:background="@drawable/border_style"
-                android:textSize="20sp"
                 android:padding="15dp"
                 android:layout_marginBottom="15dp" />
-
-
 
 
 
@@ -113,24 +110,31 @@
                 android:textColor="#FFFFFF"/>
 
             <EditText
-                android:id="@+id/reg_etConPass"
+                android:id="@+id/etConPass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
                 android:hint="Must contain at least 6 characters."
                 android:background="@drawable/border_style"
-                android:textSize="20sp"
-                android:padding="15dp"
-                android:layout_marginBottom="15dp" />
+                android:padding="15dp" />
 
 
             <Button
-                android:id="@+id/reg_btn"
+                android:id="@+id/btnReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/register"
                 android:background="@drawable/reg_btn"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="go back"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textColor="#FFFFFF"/>
 
 
         </LinearLayout>
