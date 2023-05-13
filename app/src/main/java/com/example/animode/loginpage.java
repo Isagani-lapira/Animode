@@ -83,23 +83,23 @@ public class loginpage extends AppCompatActivity {
         u = etEmail.getText().toString().trim();
         p = etPass.getText().toString().trim();
         startActivity(new Intent(loginpage.this, homepage.class));
-//        if(u.isEmpty()){
-//            etEmail.setError("You must enter a username!");
-//        }
-//
-//        if(p.isEmpty()){
-//            etPass.setError("You must enter a password!");
-//        }
-//
-//        else {
-//            //check if the email and password existing and right
-//            li_auth.signInWithEmailAndPassword(u,p).addOnCompleteListener(task -> {
-//                if(task.isSuccessful()){
-//                    Toast.makeText(loginpage.this, "Logged in succesfully!", Toast.LENGTH_SHORT).show();
-//                    startActivity(new Intent(loginpage.this, homepage.class));
-//                }
-//
-//            }).addOnFailureListener(e -> Toast.makeText(context, "Login Failed: "+e.getMessage(), Toast.LENGTH_SHORT).show());
-//        }
+        if(u.isEmpty()){
+            etEmail.setError("You must enter a username!");
+        }
+
+        if(p.isEmpty()){
+            etPass.setError("You must enter a password!");
+        }
+
+        else {
+            //check if the email and password existing and right
+            li_auth.signInWithEmailAndPassword(u,p).addOnCompleteListener(task -> {
+                if(task.isSuccessful()){
+                    Toast.makeText(loginpage.this, "Logged in succesfully!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(loginpage.this, homepage.class));
+                }
+
+            }).addOnFailureListener(e -> Toast.makeText(context, "Login Failed: "+e.getMessage(), Toast.LENGTH_SHORT).show());
+        }
     }
 }

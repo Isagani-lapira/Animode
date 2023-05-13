@@ -1,7 +1,7 @@
 {
   "project_info": {
-    "project_number": "611614478564",
-    "project_id": "animode-23425",
+    "project_number": "113227135435",
+    "project_id": "finalanimode",
     "storage_bucket": "animode-23425.appspot.com"
   },
   "client": [
@@ -28,7 +28,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAH3NFQDnYLVxosTsaaQzPDD7nMlDwfm9E"
+          "current_key": "AIzaSyDod5onlX6p4hzW0_7W3c_TQkLN5pyW_gU"
         }
       ],
       "services": {
