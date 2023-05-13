@@ -1,6 +1,5 @@
 package com.example.animode;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -12,10 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -87,28 +82,24 @@ public class loginpage extends AppCompatActivity {
 
         u = etEmail.getText().toString().trim();
         p = etPass.getText().toString().trim();
-
-        if(u.isEmpty()){
-            etEmail.setError("You must enter a username!");
-        }
-
-        if(p.isEmpty()){
-            etPass.setError("You must enter a password!");
-        }
-
-        else {
-            li_auth.signInWithEmailAndPassword(u,p).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
-                        Toast.makeText(loginpage.this, "Logged in succesfully!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(loginpage.this, homepage.class));
-                    }
-                    else {
-                        Toast.makeText(loginpage.this, "Log in failed. " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
+        startActivity(new Intent(loginpage.this, homepage.class));
+//        if(u.isEmpty()){
+//            etEmail.setError("You must enter a username!");
+//        }
+//
+//        if(p.isEmpty()){
+//            etPass.setError("You must enter a password!");
+//        }
+//
+//        else {
+//            //check if the email and password existing and right
+//            li_auth.signInWithEmailAndPassword(u,p).addOnCompleteListener(task -> {
+//                if(task.isSuccessful()){
+//                    Toast.makeText(loginpage.this, "Logged in succesfully!", Toast.LENGTH_SHORT).show();
+//                    startActivity(new Intent(loginpage.this, homepage.class));
+//                }
+//
+//            }).addOnFailureListener(e -> Toast.makeText(context, "Login Failed: "+e.getMessage(), Toast.LENGTH_SHORT).show());
+//        }
     }
 }

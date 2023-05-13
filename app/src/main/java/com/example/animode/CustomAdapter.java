@@ -1,7 +1,7 @@
 package com.example.animode;
 
 import android.annotation.SuppressLint;
-import android.net.Uri;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +16,22 @@ import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
-    private final ArrayList<MyAnime>anime_list;
+    final ArrayList<MyAnime>anime_list;
+    static itemClicked activity;
 
-    public CustomAdapter(ArrayList<MyAnime>anime_list){
+    //item listener
+    public interface itemClicked{
+        void onItemClicked(int position);
+    }
+
+    public CustomAdapter(Context context, ArrayList<MyAnime>anime_list){
         this.anime_list = anime_list;
+        activity = (itemClicked)context;
     }
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView ivImage;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private final ImageView ivImage;
         private final TextView tvAnime, tvEpisodes;
 
         //where we initialize the views
@@ -34,6 +41,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             ivImage = itemView.findViewById(R.id.ivImage);
             tvAnime = itemView.findViewById(R.id.tvAnime);
             tvEpisodes = itemView.findViewById(R.id.tvEpisodes);
+
+            //clicked specific item
+            itemView.setOnClickListener(v->{
+                activity.onItemClicked(anime_list.indexOf((MyAnime) v.getTag()));
+            });
 
         }
     }
@@ -53,13 +65,18 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull CustomAdapter.ViewHolder holder, int position) {
 
+        holder.itemView.setTag(anime_list.get(position)); //to check which one of the item
+
         //set the image to the holder image
         String imgUrl = anime_list.get(position).getIMG_URL();
         Picasso.get()
                 .load(imgUrl)
                 .into(holder.ivImage);
+
         holder.tvAnime.setText(anime_list.get(position).getANIME_NAME());
         holder.tvEpisodes.setText("episodes: "+anime_list.get(position).getEPISODES());
+
+
     }
 
     @Override

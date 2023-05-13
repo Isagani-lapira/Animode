@@ -13,4 +13,8 @@
     <string name="profile">profile</string>
     <string name="anime_name">anime name</string>
     <string name="episodes">episodes</string>
+    <string name="ex_juandelacruz_gmail_com">ex: juandelacruz@gmail.com</string>
+    <string name="confirm_password">Confirm Password:</string>
+    <string name="last_name">Last Name:</string>
+    <string name="first_name">First Name:</string>
 </resources>

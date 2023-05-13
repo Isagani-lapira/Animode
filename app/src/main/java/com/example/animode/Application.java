@@ -1,10 +1,10 @@
 package com.example.animode;
 
-import android.util.Log;
+
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -17,7 +17,6 @@ import java.util.ArrayList;
 public class Application extends android.app.Application {
 
     public static ArrayList<MyAnime>myAnime_list;
-    private final String END_POINT = "https://kitsu.io/api/edge/trending/anime";
 
     @Override
     public void onCreate() {
@@ -29,17 +28,18 @@ public class Application extends android.app.Application {
         RequestQueue rq = Volley.newRequestQueue(getApplicationContext());
         rq.start();
 
+        String END_POINT = "https://kitsu.io/api/edge/trending/anime";
         JsonObjectRequest objReq = new JsonObjectRequest(Request.Method.GET, END_POINT, null,
-                (Response.Listener<JSONObject>) response -> {
+                response -> {
 
                     try {
                         JSONArray array = response.getJSONArray("data");
 
                         //get the top 10 best anime
-                        for(int i = 0; i<array.length(); i++){
+                        for(int i = 0; i<10; i++){
 
-                            JSONObject animeName = array.getJSONObject(i);
-                            JSONObject attributes = animeName.getJSONObject("attributes");
+                            JSONObject attri = array.getJSONObject(i);
+                            JSONObject attributes = attri.getJSONObject("attributes");
 
                             //image
                             JSONObject posterImage = attributes.getJSONObject("posterImage");
@@ -59,6 +59,7 @@ public class Application extends android.app.Application {
 
 
                 }, error -> {
+                    Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
                 });
 
         rq.add(objReq);

@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".registrationpage">
+    tools:context=".registrationpage"
+    android:padding="15dp"
+    tools:ignore="hardCodedText">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -26,10 +28,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="First Name:"
+                android:text="@string/first_name"
                 android:textSize="20sp"
                 android:padding="5dp"
-                android:layout_marginLeft="15dp"
                 android:textColor="#FFFFFF"/>
 
             <EditText
@@ -40,21 +41,14 @@
                 android:background="@drawable/border_style"
                 android:textSize="20sp"
                 android:padding="15dp"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"/>
-
-
-
-
+                android:layout_marginBottom="15dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Last Name:"
+                android:text="@string/last_name"
                 android:textSize="20sp"
                 android:padding="5dp"
-                android:layout_marginLeft="15dp"
                 android:textColor="#FFFFFF"/>
 
             <EditText
@@ -65,59 +59,46 @@
                 android:background="@drawable/border_style"
                 android:textSize="20sp"
                 android:padding="15dp"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"/>
-
-
-
+                android:layout_marginBottom="15dp" />
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Email Address:"
+                android:text="@string/email_address"
                 android:textSize="20sp"
                 android:padding="5dp"
-                android:layout_marginLeft="15dp"
                 android:textColor="#FFFFFF"/>
 
             <EditText
                 android:id="@+id/reg_etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ex: juandelacruz@gmail.com"
+                android:hint="@string/ex_juandelacruz_gmail_com"
                 android:background="@drawable/border_style"
                 android:textSize="20sp"
                 android:padding="15dp"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"/>
-
-
-
+                android:layout_marginBottom="15dp" />
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Password:"
+                android:text="@string/password"
                 android:textSize="20sp"
                 android:padding="5dp"
-                android:layout_marginLeft="15dp"
                 android:textColor="#FFFFFF"/>
 
             <EditText
                 android:id="@+id/reg_etPass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
                 android:hint="Must contain at least 8 characters."
                 android:background="@drawable/border_style"
                 android:textSize="20sp"
                 android:padding="15dp"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"/>
+                android:layout_marginBottom="15dp" />
 
 
 
@@ -126,10 +107,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Confirm Password:"
+                android:text="@string/confirm_password"
                 android:textSize="20sp"
                 android:padding="5dp"
-                android:layout_marginLeft="15dp"
                 android:textColor="#FFFFFF"/>
 
             <EditText
@@ -140,24 +120,17 @@
                 android:background="@drawable/border_style"
                 android:textSize="20sp"
                 android:padding="15dp"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"/>
-
-
-
+                android:layout_marginBottom="15dp" />
 
 
             <Button
                 android:id="@+id/reg_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Register"
+                android:text="@string/register"
                 android:background="@drawable/reg_btn"
                 android:layout_marginTop="25dp"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"/>
+                android:layout_marginBottom="15dp" />
 
 
         </LinearLayout>
