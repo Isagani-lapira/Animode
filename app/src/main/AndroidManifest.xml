@@ -16,6 +16,9 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".search_activity"
+            android:exported="false" />
+        <activity
             android:name=".individual_anime"
             android:exported="false">
             <meta-data

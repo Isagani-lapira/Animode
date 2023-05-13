@@ -36,10 +36,11 @@
                 android:textSize="24sp"/>
 
             <ImageView
+                android:id="@+id/ivSearch"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/search"
-                android:contentDescription="@string/search" />
+                android:contentDescription="@string/search"
+                android:src="@drawable/search" />
 
         </LinearLayout>
 

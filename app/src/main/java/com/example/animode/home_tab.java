@@ -1,5 +1,6 @@
 package com.example.animode;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.VideoView;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class home_tab extends Fragment {
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter adapter;
     ArrayList<MyAnime> list;
+    ImageView ivSearch;
 
     public home_tab() {
         // Required empty public constructor
@@ -44,7 +47,13 @@ public class home_tab extends Fragment {
 
     private void initialize() {
         vvVideo = view.findViewById(R.id.vvVideo);
+        ivSearch = view.findViewById(R.id.ivSearch);
         setVideo();
+
+        //go to search activity
+        ivSearch.setOnClickListener(v->{
+            startActivity(new Intent(getContext(),search_activity.class));
+        });
     }
 
     @Override
