@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:paddingHorizontal="20dp"
+    android:background="@drawable/wallpaper"
     tools:context=".loginpage">
 
     <LinearLayout

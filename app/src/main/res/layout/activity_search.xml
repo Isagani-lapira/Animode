@@ -6,15 +6,129 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".search_activity"
-    android:layout_margin="10dp">
+    tools:ignore="hardcodedtext">
 
 
-    <AutoCompleteTextView
-        android:id="@+id/searchTextView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="italic"
+        android:orientation="horizontal"
+        android:background="@drawable/border_style"
+        android:layout_margin="10dp">
+
+        <AutoCompleteTextView
+            android:id="@+id/searchTextView"
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:padding="15dp"
+            android:background="@color/transparent"
+            android:hint="@string/search_your_anime"
+            tools:ignore="VisualLintTextFieldSize" />
+
+        <ImageView
+            android:id="@+id/ivSearch"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/search"
+            android:contentDescription="@string/search"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/noResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textSize="22sp"/>
+    <ScrollView
+        android:id="@+id/svContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:padding="15dp"
-        android:hint="@string/search_your_anime"
-        android:background="@drawable/border_style"/>
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="100dp">
+
+                <ImageView
+                    android:id="@+id/ivAnimeImage"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/wallpaper"
+                    android:contentDescription="@string/anime_name"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tvAnimeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Title"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_margin="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Synopsis"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:textColor="#FFEB3B"/>
+
+            <TextView
+                android:id="@+id/tvSynopsis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Text"
+                android:textSize="18sp"
+                android:gravity="center" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="#F44336"
+                    android:text="remove"
+                    android:textColor="#393838"
+                    tools:ignore="TextContrastCheck" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="#CDDC39"
+                    android:text="To watch"
+                    android:textColor="#455A64" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
 </LinearLayout>

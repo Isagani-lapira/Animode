@@ -82,7 +82,8 @@ public class loginpage extends AppCompatActivity {
 
         u = etEmail.getText().toString().trim();
         p = etPass.getText().toString().trim();
-        startActivity(new Intent(loginpage.this, homepage.class));
+
+        //check if inputs are complete
         if(u.isEmpty()){
             etEmail.setError("You must enter a username!");
         }
@@ -90,7 +91,6 @@ public class loginpage extends AppCompatActivity {
         if(p.isEmpty()){
             etPass.setError("You must enter a password!");
         }
-
         else {
             //check if the email and password existing and right
             li_auth.signInWithEmailAndPassword(u,p).addOnCompleteListener(task -> {

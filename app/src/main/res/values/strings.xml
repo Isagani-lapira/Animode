@@ -18,4 +18,5 @@
     <string name="last_name">Last Name:</string>
     <string name="first_name">First Name:</string>
     <string name="search_your_anime">Search your anime</string>
+    <string name="the_anime_is_not_available_here">The anime is not available here</string>
 </resources>

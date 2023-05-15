@@ -98,7 +98,6 @@ public class individual_anime extends AppCompatActivity {
 
                             //set up the details
                             //to show image
-                            Log.d("ssss", imagePath);
                             Picasso.get()
                                     .load(imagePath)
                                     .fit()

@@ -3,23 +3,42 @@ package com.example.animode;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
 public class search_activity extends AppCompatActivity {
 
     private AutoCompleteTextView searchTextView;
+    private ImageView ivSearch, ivAnimeImage;
+    private TextView tvAnimeName,tvSynopsis, noResult;
+    private ScrollView svContainer;
     private ArrayAdapter<String> adapter;
     private final Executor executor = Executors.newSingleThreadExecutor();
     private final LinkedBlockingQueue<String> requestQueue = new LinkedBlockingQueue<>();
@@ -29,11 +48,25 @@ public class search_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        // Listen for text changes in the search bar
+
+        initialize();
+        listener();
+    }
+
+    private void initialize() {
         searchTextView = findViewById(R.id.searchTextView);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, new ArrayList<>());
         searchTextView.setAdapter(adapter);
+        ivSearch = findViewById(R.id.ivSearch);
+        tvAnimeName = findViewById(R.id.tvAnimeName);
+        tvSynopsis = findViewById(R.id.tvSynopsis);
+        ivAnimeImage = findViewById(R.id.ivAnimeImage);
+        noResult = findViewById(R.id.noResult);
+        svContainer = findViewById(R.id.svContainer);
+    }
 
-        // Listen for text changes in the search bar
+    private void listener() {
         searchTextView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -85,6 +118,70 @@ public class search_activity extends AppCompatActivity {
                 }
             }
         });
+
+        ivSearch.setOnClickListener(v->{
+            String animeSearch = searchTextView.getText().toString();
+            if(animeSearch.equals(""))
+                Toast.makeText(this, "Please input an anime", Toast.LENGTH_SHORT).show();
+
+            else //make a request to API
+                searchResultAPI(animeSearch);
+
+        });
+    }
+
+    private void searchResultAPI(String anime_name) {
+        RequestQueue rq = Volley.newRequestQueue(this);
+        rq.start();
+
+        String URL = "https://kitsu.io/api/edge/anime?filter[text]="+anime_name;
+        JsonObjectRequest obj = new JsonObjectRequest(com.android.volley.Request.Method.GET,
+                URL, null,
+                response -> {
+
+                //get the response for that search
+                    try {
+                        JSONArray data = response.getJSONArray("data");
+
+                        //check if existing
+                        if(data.length()<=0){
+                            noResult.setVisibility(View.VISIBLE);
+                            svContainer.setVisibility(View.GONE);
+                            noResult.setText(R.string.the_anime_is_not_available_here);
+                        }
+                        else{
+                            noResult.setVisibility(View.GONE);
+                            svContainer.setVisibility(View.VISIBLE); //show the container
+                            JSONObject attributes = data.getJSONObject(0).getJSONObject("attributes");
+
+                            //get image link
+                            JSONObject posterImage = attributes.getJSONObject("posterImage");
+                            String imageLink = posterImage.getString("medium");
+
+                            //get synopsis
+                            String synopsis = attributes.getString("synopsis");
+
+                            //set values
+                            tvAnimeName.setText(anime_name);
+                            tvSynopsis.setText(synopsis);
+
+                            //set up the image
+                            Picasso.get()
+                                    .load(imageLink)
+                                    .fit()
+                                    .centerCrop()
+                                    .into(ivAnimeImage);
+
+                        }
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                }, error -> {
+
+        });
+
+        rq.add(obj);
     }
 
     private String makeApiRequest(String url) {
