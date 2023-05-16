@@ -3,8 +3,159 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_color"
     tools:context=".profile_tab">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1.2in"
+            android:src="#DDDDDD"/>
+
+        <ImageView
+            android:layout_width="1in"
+            android:layout_height="1in"
+            android:src="@drawable/img"
+            android:layout_marginTop="110dp"
+            android:layout_marginLeft="10dp"/>
+
+        <Button
+            android:layout_width=".8in"
+            android:layout_height=".25in"
+            android:backgroundTint="@color/accent_color"
+            android:background="@drawable/profile_btn"
+            android:text="Edit"
+            android:textSize="20sp"
+            android:layout_marginLeft="1.6in"
+            android:layout_marginTop=".88in"
+            android:alpha=".40"/>
+
+    </FrameLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Account Details"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:textColor="#FFFFFF"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/first_name"
+        android:textSize="20sp"
+        android:padding="5dp"
+        android:textColor="#FFFFFF"/>
+
+    <EditText
+        android:id="@+id/etFname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="ex: Juan"
+        android:background="@drawable/border_style"
+        android:padding="15dp"
+        android:layout_marginBottom="15dp"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/last_name"
+        android:textSize="20sp"
+        android:padding="5dp"
+        android:textColor="#FFFFFF"/>
+
+    <EditText
+        android:id="@+id/etLname"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ex: Dela Cruz"
+        android:background="@drawable/border_style"
+        android:padding="15dp"
+        android:layout_marginBottom="15dp" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Username:"
+        android:textSize="20sp"
+        android:padding="5dp"
+        android:textColor="#FFFFFF"/>
+
+    <EditText
+        android:id="@+id/etUname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="ex: Juan"
+        android:background="@drawable/border_style"
+        android:padding="15dp"
+        android:layout_marginBottom="15dp"
+        android:textColor="#000000"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/email_address"
+        android:textSize="20sp"
+        android:padding="5dp"
+        android:textColor="#FFFFFF"/>
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/ex_juandelacruz_gmail_com"
+        android:background="@drawable/border_style"
+        android:inputType="textEmailAddress"
+        android:padding="15dp"
+        android:layout_marginBottom="15dp" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/password"
+        android:textSize="20sp"
+        android:padding="5dp"
+        android:textColor="#FFFFFF"/>
+
+    <EditText
+        android:id="@+id/etPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Must contain at least 8 characters."
+        android:background="@drawable/border_style"
+        android:padding="15dp"
+        android:layout_marginBottom="80dp" />
+
+
+
+
+
+
+</LinearLayout>
+    </ScrollView>
 
 
 </FrameLayout>
