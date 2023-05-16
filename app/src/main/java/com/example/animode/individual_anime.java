@@ -3,7 +3,6 @@ package com.example.animode;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,11 +14,14 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 
 public class individual_anime extends AppCompatActivity {
@@ -33,22 +35,21 @@ public class individual_anime extends AppCompatActivity {
     //anime attributes
     String anime_name = "";
     String episodes = "";
+    StoreUserData userData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_individual_anime);
 
-
-        initialize();
-        listener();
         intent = getIntent();
         int position = intent.getIntExtra("position",0);
-
         //get the selected anime name and attribute
         anime_name = Application.myAnime_list.get(position).getANIME_NAME();
         episodes =  Application.myAnime_list.get(position).getEPISODES();
-        setVal(anime_name, episodes);
+        initialize();
+        setVal(anime_name, episodes); //show details about a selected anime
+        listener();
 
     }
 
@@ -57,6 +58,10 @@ public class individual_anime extends AppCompatActivity {
         btBack.setOnClickListener(v->{
             intent = new Intent(context,homepage.class);
             startActivity(intent);
+        });
+
+        btToWatch.setOnClickListener(v->{
+            userData.insertToWatch();
         });
     }
 
@@ -69,6 +74,9 @@ public class individual_anime extends AppCompatActivity {
         btBack = findViewById(R.id.btBack);
         btToWatch = findViewById(R.id.btToWatch);
 
+        FirebaseFirestore fbStore = FirebaseFirestore.getInstance();
+        String userID = FirebaseAuth.getInstance().getUid();
+        userData = new StoreUserData(context,userID,anime_name,episodes,fbStore);
 
     }
 
@@ -111,9 +119,7 @@ public class individual_anime extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }, error -> {
-            Toast.makeText(context, "Something is wrong. Try again", Toast.LENGTH_SHORT).show();
-        });
+                }, error -> Toast.makeText(context, "Please Try again", Toast.LENGTH_SHORT).show());
 
         rq.add(obj);
     }

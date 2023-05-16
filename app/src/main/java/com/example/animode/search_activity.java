@@ -3,9 +3,11 @@ package com.example.animode;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -18,6 +20,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -42,6 +46,10 @@ public class search_activity extends AppCompatActivity {
     private ArrayAdapter<String> adapter;
     private final Executor executor = Executors.newSingleThreadExecutor();
     private final LinkedBlockingQueue<String> requestQueue = new LinkedBlockingQueue<>();
+    private Button btToWatch;
+    StoreUserData userData;
+    String anime_name = "";
+    String episodes = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +72,7 @@ public class search_activity extends AppCompatActivity {
         ivAnimeImage = findViewById(R.id.ivAnimeImage);
         noResult = findViewById(R.id.noResult);
         svContainer = findViewById(R.id.svContainer);
+        btToWatch = findViewById(R.id.btToWatch);
     }
 
     private void listener() {
@@ -128,6 +137,16 @@ public class search_activity extends AppCompatActivity {
                 searchResultAPI(animeSearch);
 
         });
+
+        //save to the to watch list
+        btToWatch.setOnClickListener(v->{
+            FirebaseFirestore fbStore = FirebaseFirestore.getInstance();
+            String userID = FirebaseAuth.getInstance().getUid();
+
+            anime_name = tvAnimeName.getText().toString();
+            userData = new StoreUserData(this,userID,anime_name,episodes,fbStore); //details to be add on firestore
+            userData.insertToWatch();
+        });
     }
 
     private void searchResultAPI(String anime_name) {
@@ -161,6 +180,8 @@ public class search_activity extends AppCompatActivity {
                             //get synopsis
                             String synopsis = attributes.getString("synopsis");
 
+                            //episode
+                            episodes = attributes.getString("episodeCount");
                             //set values
                             tvAnimeName.setText(anime_name);
                             tvSynopsis.setText(synopsis);

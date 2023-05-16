@@ -118,6 +118,7 @@
                     tools:ignore="TextContrastCheck" />
 
                 <Button
+                    android:id="@+id/btToWatch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
