@@ -32,6 +32,7 @@
             android:layout_marginLeft="10dp"/>
 
         <Button
+            android:id="@+id/edit"
             android:layout_width=".8in"
             android:layout_height=".25in"
             android:backgroundTint="@color/accent_color"
@@ -62,15 +63,16 @@
         android:padding="5dp"
         android:textColor="#FFFFFF"/>
 
-    <EditText
-        android:id="@+id/etFname"
+    <TextView
+        android:id="@+id/tvFname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:hint="ex: Juan"
+        android:hint="Juan"
         android:background="@drawable/border_style"
         android:padding="15dp"
         android:layout_marginBottom="15dp"
+        android:textSize="20sp"
         android:textColor="#000000"/>
 
     <TextView
@@ -81,14 +83,15 @@
         android:padding="5dp"
         android:textColor="#FFFFFF"/>
 
-    <EditText
-        android:id="@+id/etLname"
+    <TextView
+        android:id="@+id/tvLname"
         android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="ex: Dela Cruz"
+        android:hint="Dela Cruz"
         android:background="@drawable/border_style"
         android:padding="15dp"
+        android:textSize="20sp"
         android:layout_marginBottom="15dp" />
 
 
@@ -100,15 +103,16 @@
         android:padding="5dp"
         android:textColor="#FFFFFF"/>
 
-    <EditText
-        android:id="@+id/etUname"
+    <TextView
+        android:id="@+id/tvUname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:hint="ex: Juan"
+        android:hint="Juan23"
         android:background="@drawable/border_style"
         android:padding="15dp"
         android:layout_marginBottom="15dp"
+        android:textSize="20sp"
         android:textColor="#000000"/>
 
 
@@ -120,14 +124,15 @@
         android:padding="5dp"
         android:textColor="#FFFFFF"/>
 
-    <EditText
-        android:id="@+id/etEmail"
+    <TextView
+        android:id="@+id/tvEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/ex_juandelacruz_gmail_com"
+        android:hint="juandelacruz_gmail_com"
         android:background="@drawable/border_style"
         android:inputType="textEmailAddress"
         android:padding="15dp"
+        android:textSize="20sp"
         android:layout_marginBottom="15dp" />
 
 
@@ -139,20 +144,16 @@
         android:padding="5dp"
         android:textColor="#FFFFFF"/>
 
-    <EditText
-        android:id="@+id/etPass"
+    <TextView
+        android:id="@+id/tvPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
-        android:hint="Must contain at least 8 characters."
+        android:hint="*********"
         android:background="@drawable/border_style"
         android:padding="15dp"
+        android:textSize="20sp"
         android:layout_marginBottom="80dp" />
-
-
-
-
-
 
 </LinearLayout>
     </ScrollView>

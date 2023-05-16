@@ -10,15 +10,23 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class registrationpage extends AppCompatActivity {
 
     private EditText etFname,etLname,etEmail,etPass,etConPass;
     private Button btnReg;
     private FirebaseAuth rauth;
+    private FirebaseFirestore fs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,7 @@ public class registrationpage extends AppCompatActivity {
         btnReg = findViewById(R.id.btnReg);
 
         rauth = FirebaseAuth.getInstance();
+        fs = FirebaseFirestore.getInstance();
     }
 
     private void fnctn() {
@@ -77,6 +86,28 @@ public class registrationpage extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(registrationpage.this, "Registered Succesfully!", Toast.LENGTH_SHORT).show();
+
+                            Map<String, Object> person = new HashMap<>();
+
+                            person.put("email", ea);
+                            person.put("fname", fn);
+                            person.put("lname", ln);
+
+                            fs.collection("Persons")
+                                    .add(person)
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                        @Override
+                                        public void onSuccess(DocumentReference documentReference) {
+                                            Toast.makeText(registrationpage.this, "CONGRATS!!!!!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(registrationpage.this, "ERROR!!!!!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
                             startActivity(new Intent(registrationpage.this, loginpage.class));
                         }
 
@@ -84,13 +115,17 @@ public class registrationpage extends AppCompatActivity {
                             Toast.makeText(registrationpage.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
                         }
 
-                        Person prsn = new Person(fn, ln, ea);
-                        DBPerson dbp = new DBPerson();
-                        dbp.add(prsn).addOnSuccessListener(success->{
-                            Toast.makeText(registrationpage.this, "Registered Succesfully!", Toast.LENGTH_SHORT).show();
-                        }).addOnFailureListener(error->{
-                            Toast.makeText(registrationpage.this, "Error!", Toast.LENGTH_SHORT).show();
-                        });
+
+
+
+
+//                        Person prsn = new Person(fn, ln, ea);
+//                        DBPerson dbp = new DBPerson();
+//                        dbp.add(prsn).addOnSuccessListener(success->{
+//                            Toast.makeText(registrationpage.this, "Registered Succesfully!", Toast.LENGTH_SHORT).show();
+//                        }).addOnFailureListener(error->{
+//                            Toast.makeText(registrationpage.this, "Error!", Toast.LENGTH_SHORT).show();
+//                        });
                     }
                 });
             }
