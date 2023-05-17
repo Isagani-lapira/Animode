@@ -64,126 +64,61 @@ public class registrationpage extends AppCompatActivity {
 
     private void fnctn() {
         btnReg.setOnClickListener(v -> {
-//            String fn = etFname.getText().toString().trim();
-//            String ln = etLname.getText().toString().trim();
-//
-//            String ea = etEmail.getText().toString().trim();
-//            String pw = etPass.getText().toString().trim();
-//            String cpw = etConPass.getText().toString().trim();
+            String ea = etEmail.getText().toString();
+            String pw = etPass.getText().toString();
+            String fn = etFname.getText().toString();
+            String ln = etLname.getText().toString();
+            String cpw = etConPass.getText().toString();
 
             if(isFieldMissing()){
-                Toast.makeText(context, "Answer the all input fields", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Please answer all the input fields.", Toast.LENGTH_SHORT).show();
             }
-            else{
-                Toast.makeText(context, "complete lahat", Toast.LENGTH_SHORT).show();
-            }
-//            if (fn.isEmpty()){
-//                etFname.setError("You must enter a first name!");
-//            }
-//
-//            if (ln.isEmpty()){
-//                etLname.setError("You must enter a last name!");
-//            }
-//
-//            if (ea.isEmpty()) {
-//                etEmail.setError("You must enter an email!");
-//            }
-//
-//            if (pw.isEmpty()) {
-//                etPass.setError("You must enter a password!");
-//            }
-//
-//            if (cpw.isEmpty()) {
-//                etConPass.setError("Password and confirm password must match");
+
+//            else if (pw!=cpw){
+//                Toast.makeText(context, "Password and Confirm Password must match!", Toast.LENGTH_SHORT).show();
 //            }
 
-//            else {
-//                rauth.createUserWithEmailAndPassword(ea, pw).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful()) {
-//                            Toast.makeText(registrationpage.this, "Registered Succesfully!", Toast.LENGTH_SHORT).show();
-//
-//                            Map<String, Object> person = new HashMap<>();
-//
-//                            person.put("email", ea);
-//                            person.put("fname", fn);
-//                            person.put("lname", ln);
-//
-//                            fs.collection("Persons")
-//                                    .add(person)
-//                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                                        @Override
-//                                        public void onSuccess(DocumentReference documentReference) {
-//                                            Toast.makeText(registrationpage.this, "CONGRATS!!!!!", Toast.LENGTH_SHORT).show();
-//                                        }
-//                                    })
-//                                    .addOnFailureListener(new OnFailureListener() {
-//                                        @Override
-//                                        public void onFailure(@NonNull Exception e) {
-//                                            Toast.makeText(registrationpage.this, "ERROR!!!!!", Toast.LENGTH_SHORT).show();
-//                                        }
-//                                    });
-//
-//                            startActivity(new Intent(registrationpage.this, loginpage.class));
-//                        }
-//
-//                        else {
-//                            Toast.makeText(registrationpage.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
-//                        }
-//
-//
-//
-//
-//
-////                        Person prsn = new Person(fn, ln, ea);
-////                        DBPerson dbp = new DBPerson();
-////                        dbp.add(prsn).addOnSuccessListener(success->{
-////                            Toast.makeText(registrationpage.this, "Registered Succesfully!", Toast.LENGTH_SHORT).show();
-////                        }).addOnFailureListener(error->{
-////                            Toast.makeText(registrationpage.this, "Error!", Toast.LENGTH_SHORT).show();
-////                        });
-//                    }
-//                });
-//            }
-//
+
+           else{
+                rauth.createUserWithEmailAndPassword(ea, pw).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+
+                            Map<String, Object> accs = new HashMap<>();
+                            accs.put("email", ea);
+                            accs.put("password", pw);
+                            accs.put("fname", fn);
+                            accs.put("lname", ln);
+
+                            fs.collection("Persons")
+                                    .add(accs)
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                        @Override
+                                        public void onSuccess(DocumentReference documentReference) {
+                                            Toast.makeText(registrationpage.this, "Registered Succesfully!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(registrationpage.this, "Error, please try again!!!!!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+                            startActivity(new Intent(registrationpage.this, loginpage.class));
+                        } else {
+                            Toast.makeText(registrationpage.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+            }
+
+
         });
 
     }
-
-
-//    private void listener() {
-//        btnReg.setOnClickListener(v->{
-//            if(checkField()){
-//                String password = etPass.getText().toString();
-//                String confirmPass = etConPass.getText().toString();
-//
-//                DBPerson dbPerson = new DBPerson();
-//
-//                //check first if the 2 password matches
-//                if(password.equals(confirmPass)){
-//                    String FName = etFname.getText().toString();
-//                    String LName = etLname.getText().toString();
-//                    String email = etEmail.getText().toString();
-//
-//                    Person person = new Person(FName,LName,email);
-//                    dbPerson.add(person).addOnSuccessListener(success -> {
-//                        Toast.makeText(this, "Account is created", Toast.LENGTH_SHORT).show();
-//
-//                    }).addOnFailureListener(failure->{
-//                        Toast.makeText(this, "Please try again", Toast.LENGTH_SHORT).show();
-//                    });
-//
-//                }
-//                else
-//                    Toast.makeText(this, "Password not matched!", Toast.LENGTH_SHORT).show();
-//
-//            }
-//            else
-//                Toast.makeText(this, "Incomplete input", Toast.LENGTH_SHORT).show();
-//
-//        });
-//    }
 
     private boolean isFieldMissing() {
         EditText[] editTexts = {etFname,etLname,etEmail,etPass,etConPass};
@@ -193,7 +128,7 @@ public class registrationpage extends AppCompatActivity {
         //check if the field has a missing input
         for(EditText editText: editTexts){
             if(editText.getText().toString().equals("")){
-                editText.setError("You must enter an email!");
+                editText.setError("Please answer all the input fields!");
                 flag=1;
             }
 
