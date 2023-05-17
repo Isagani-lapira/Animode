@@ -2,6 +2,7 @@ package com.example.animode;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ public class AnimeWatchAdapter extends RecyclerView.Adapter <AnimeWatchAdapter.V
         ImageView ivAnimeImage;
         TextView tvAnimeName,tvEpisodes;
         Button btDone;
+
 
         //connect views of the list_item layout
         public ViewHolder(@NonNull View itemView) {
@@ -60,10 +62,12 @@ public class AnimeWatchAdapter extends RecyclerView.Adapter <AnimeWatchAdapter.V
         String imgUrl = anime.get(position).getIMG_URL();
         Picasso.get()
                 .load(imgUrl)
+                .fit()
+                .centerCrop()
                 .into(holder.ivAnimeImage);
 
         holder.tvAnimeName.setText(anime.get(position).getANIME_NAME());
-        holder.tvEpisodes.setText("episodes: "+anime.get(position).getEPISODES());
+        holder.tvEpisodes.setText("Episodes: "+anime.get(position).getEPISODES());
     }
 
     @Override

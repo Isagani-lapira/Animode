@@ -10,7 +10,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
     <string name="to_watch">To watch</string>
-    <string name="profile">profile</string>
+    <string name="profile">Profile</string>
     <string name="anime_name">anime name</string>
     <string name="episodes">episodes</string>
     <string name="ex_juandelacruz_gmail_com">ex: juandelacruz@gmail.com</string>
@@ -20,4 +20,6 @@
     <string name="search_your_anime">Search your anime</string>
     <string name="the_anime_is_not_available_here">The anime is not available here</string>
     <string name="done">DONE</string>
+    <string name="my_to_watch_anime">My to watch anime:</string>
+    <string name="watchlist">Watchlist</string>
 </resources>

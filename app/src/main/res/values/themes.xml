@@ -8,7 +8,9 @@
 
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/disable_color</item>
+        <item name="android:statusBarColor">#D53333</item>
         <!-- Customize your theme here. -->
     </style>
+
+
 </resources>

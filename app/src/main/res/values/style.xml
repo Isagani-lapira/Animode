@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BottomNavActiveText" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:textColor">@color/accent_color</item> <!-- Active text color (orange) -->
+    </style>
+
+    <style name="BottomNavInactiveText" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:textColor">@color/border_color</item> <!-- Inactive text color (black) -->
+    </style>
+</resources>

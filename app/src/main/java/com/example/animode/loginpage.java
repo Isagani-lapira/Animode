@@ -47,7 +47,7 @@ public class loginpage extends AppCompatActivity {
                 String email = etEmail.getText().toString().trim();
                 if(!email.equals("")){
                     signin.setEnabled(true);
-                    signin.setBackgroundColor(getColor(R.color.accent_color));
+                    signin.setBackground(getDrawable(R.drawable.accent_shape));
                 }
 
             }

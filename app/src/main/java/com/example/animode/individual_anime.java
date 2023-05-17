@@ -35,6 +35,7 @@ public class individual_anime extends AppCompatActivity {
     //anime attributes
     String anime_name = "";
     String episodes = "";
+    String imgURL = "";
     StoreUserData userData;
 
     @Override
@@ -45,6 +46,8 @@ public class individual_anime extends AppCompatActivity {
         intent = getIntent();
         int position = intent.getIntExtra("position",0);
         //get the selected anime name and attribute
+
+        imgURL = Application.myAnime_list.get(position).getIMG_URL();
         anime_name = Application.myAnime_list.get(position).getANIME_NAME();
         episodes =  Application.myAnime_list.get(position).getEPISODES();
         initialize();
@@ -76,7 +79,7 @@ public class individual_anime extends AppCompatActivity {
 
         FirebaseFirestore fbStore = FirebaseFirestore.getInstance();
         String userID = FirebaseAuth.getInstance().getUid();
-        userData = new StoreUserData(context,userID,anime_name,episodes,fbStore);
+        userData = new StoreUserData(context,userID,anime_name,episodes,fbStore,imgURL);
 
     }
 

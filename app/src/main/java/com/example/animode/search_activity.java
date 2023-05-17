@@ -3,7 +3,6 @@ package com.example.animode;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -12,30 +11,24 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
-
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import pl.droidsonroids.gif.GifImageView;
 
 public class search_activity extends AppCompatActivity {
 
@@ -46,10 +39,12 @@ public class search_activity extends AppCompatActivity {
     private ArrayAdapter<String> adapter;
     private final Executor executor = Executors.newSingleThreadExecutor();
     private final LinkedBlockingQueue<String> requestQueue = new LinkedBlockingQueue<>();
-    private Button btToWatch;
+    private Button btToWatch, btClear;
     StoreUserData userData;
     String anime_name = "";
     String episodes = "";
+    String imageLink = "";
+    GifImageView loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +68,8 @@ public class search_activity extends AppCompatActivity {
         noResult = findViewById(R.id.noResult);
         svContainer = findViewById(R.id.svContainer);
         btToWatch = findViewById(R.id.btToWatch);
+        btClear = findViewById(R.id.btClear);
+        loading = findViewById(R.id.loading);
     }
 
     private void listener() {
@@ -133,8 +130,11 @@ public class search_activity extends AppCompatActivity {
             if(animeSearch.equals(""))
                 Toast.makeText(this, "Please input an anime", Toast.LENGTH_SHORT).show();
 
-            else //make a request to API
+            else {
+                svContainer.setVisibility(View.GONE);
+                loading.setVisibility(View.VISIBLE); //show the loading view
                 searchResultAPI(animeSearch);
+            }
 
         });
 
@@ -144,8 +144,12 @@ public class search_activity extends AppCompatActivity {
             String userID = FirebaseAuth.getInstance().getUid();
 
             anime_name = tvAnimeName.getText().toString();
-            userData = new StoreUserData(this,userID,anime_name,episodes,fbStore); //details to be add on firestore
+            userData = new StoreUserData(this,userID,anime_name,episodes,fbStore,imageLink); //details to be add on firestore
             userData.insertToWatch();
+        });
+
+        btClear.setOnClickListener(v->{
+            svContainer.setVisibility(View.GONE);
         });
     }
 
@@ -162,6 +166,7 @@ public class search_activity extends AppCompatActivity {
                     try {
                         JSONArray data = response.getJSONArray("data");
 
+                        loading.setVisibility(View.GONE);
                         //check if existing
                         if(data.length()<=0){
                             noResult.setVisibility(View.VISIBLE);
@@ -169,13 +174,14 @@ public class search_activity extends AppCompatActivity {
                             noResult.setText(R.string.the_anime_is_not_available_here);
                         }
                         else{
+                            loading.setVisibility(View.GONE);
                             noResult.setVisibility(View.GONE);
                             svContainer.setVisibility(View.VISIBLE); //show the container
                             JSONObject attributes = data.getJSONObject(0).getJSONObject("attributes");
 
                             //get image link
                             JSONObject posterImage = attributes.getJSONObject("posterImage");
-                            String imageLink = posterImage.getString("medium");
+                            imageLink = posterImage.getString("medium");
 
                             //get synopsis
                             String synopsis = attributes.getString("synopsis");

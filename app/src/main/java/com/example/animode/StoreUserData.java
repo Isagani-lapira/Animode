@@ -9,21 +9,23 @@ import java.util.Map;
 
 public class StoreUserData {
 
-    private final String TITLE, EPISODE, USERID;
+    private final String TITLE, EPISODE, USERID, IMG_URL;
     private final FirebaseFirestore FBSTORE ;
     private final Context CONTEXT;
 
-    public StoreUserData(Context context,String userID ,String title, String episode, FirebaseFirestore fbStore){
+    public StoreUserData(Context context,String userID ,String title, String episode, FirebaseFirestore fbStore,String imgUrl){
         TITLE = title;
         EPISODE = episode;
         CONTEXT = context;
         FBSTORE = fbStore;
         USERID = userID;
+        IMG_URL = imgUrl;
     }
 
     public void insertToWatch(){
         String Title = "Title";
         String episode = "Episode";
+        String image = "Image";
 
         DocumentReference userMoviesRef = FBSTORE.collection("userAnime")
                 .document(USERID); //add to the collection of user anime data
@@ -31,6 +33,7 @@ public class StoreUserData {
         Map<String, Object> userAnime = new HashMap<>();
         userAnime.put(Title,TITLE);
         userAnime.put(episode,EPISODE);
+        userAnime.put(image,IMG_URL);
         userMoviesRef.get()
                         .addOnSuccessListener(documentSnapshot -> {
                             //check if there are data stored

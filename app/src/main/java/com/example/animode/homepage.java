@@ -17,6 +17,8 @@ public class homepage extends AppCompatActivity implements CustomAdapter.itemCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
+        //change status bar color
+        getWindow().setStatusBarColor(getColor(R.color.primary_color));
         initialize();
         listener();
     }

@@ -17,6 +17,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:itemTextAppearanceActive="@style/BottomNavActiveText"
+        app:itemTextAppearanceInactive="@style/BottomNavInactiveText"
+        app:itemIconTint="@color/bottom_nav_icon_color"
+        app:labelVisibilityMode="selected"
         app:menu="@menu/menu" />
 
     <FrameLayout

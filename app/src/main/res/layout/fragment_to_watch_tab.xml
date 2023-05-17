@@ -4,8 +4,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".toWatch_tab">
+    tools:context=".toWatch_tab"
+    tools:ignore="hardcodedtext">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/my_to_watch_anime"
+        android:textSize="22sp"
+        android:layout_margin="10dp"/>
 
+    <LinearLayout
+        android:id="@+id/llNoWatchList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_marginVertical="15dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/anime_name"
+            android:src="@drawable/cat_logo"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Your watchlist need some love"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="20sp"/>
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Let's fill it up with awesome anime."/>
+
+        <Button
+            android:layout_margin="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Search for anime"
+            android:textColor="@color/primary_color"
+            android:textStyle="bold"
+            android:backgroundTint="@color/accent_color"
+            android:paddingVertical="20dp"/>
+
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvToWatch"
         android:layout_width="match_parent"

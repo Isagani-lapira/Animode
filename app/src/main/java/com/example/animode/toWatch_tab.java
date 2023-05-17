@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -32,7 +33,8 @@ public class toWatch_tab extends Fragment {
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter adapter;
     ArrayList<MyAnime> list;
-
+    private int flag;
+    private LinearLayout llNoWatchList;
 
     public toWatch_tab() {
         // Required empty public constructor
@@ -42,17 +44,15 @@ public class toWatch_tab extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-         view = inflater.inflate(R.layout.fragment_to_watch_tab, container, false);
+        view = inflater.inflate(R.layout.fragment_to_watch_tab, container, false);
 
         recyclerView = view.findViewById(R.id.rvToWatch);
         recyclerView.setHasFixedSize(true);
-        list = Application.watchList;
 
         layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new AnimeWatchAdapter(list);
-
-
+        llNoWatchList = view.findViewById(R.id.llNoWatchList);
 
         // Inflate the layout for this fragment
         return view;
@@ -64,16 +64,19 @@ public class toWatch_tab extends Fragment {
 
         recyclerView = view.findViewById(R.id.rvToWatch);
         recyclerView.setHasFixedSize(true);
-        list = Application.watchList;
 
         layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new AnimeWatchAdapter(list);
+        list = new ArrayList<>();
+        getAnimeList();
 
+    }
 
+    private void getAnimeList() {
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        flag=0;
         firestore.collection("userAnime")
                 .document(userId)
                 .collection("toWatch")
@@ -81,18 +84,22 @@ public class toWatch_tab extends Fragment {
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (DocumentSnapshot documentSnapshot: queryDocumentSnapshots){
                         if(documentSnapshot.exists()){
+                            flag=1;
                             String title = documentSnapshot.getString("Title");
-                            Toast.makeText(getActivity(), title, Toast.LENGTH_SHORT).show();
+                            String episode = documentSnapshot.getString("Episode");
+                            String img_Url = documentSnapshot.getString("Image");
+                            list.add(new MyAnime(img_Url,title,episode));
                         }
 
                     }
+
+                    if(flag==1){
+                        llNoWatchList.setVisibility(View.GONE);
+                        adapter = new AnimeWatchAdapter(list);
+                        recyclerView.setAdapter(adapter);
+                    }
+
                 });
-
-
-
-
-        recyclerView.setAdapter(adapter);
-
     }
 
 
