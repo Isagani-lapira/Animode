@@ -21,7 +21,6 @@ public class AnimeWatchAdapter extends RecyclerView.Adapter <AnimeWatchAdapter.V
     private final ArrayList<MyAnime>anime;
     private final FirebaseFirestore FBSTORE;
     private final String USER_ID;
-    private View fragment;
     public AnimeWatchAdapter(ArrayList<MyAnime> anime, FirebaseFirestore fbstore, String user_id){
         this.anime = anime;
         FBSTORE = fbstore;
@@ -58,8 +57,6 @@ public class AnimeWatchAdapter extends RecyclerView.Adapter <AnimeWatchAdapter.V
 
         //set up the layout that will be using as recyclerview desing
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,parent,false);
-        fragment = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_to_watch_tab,
-                parent,false);
         return new ViewHolder(view);
     }
 
@@ -73,6 +70,7 @@ public class AnimeWatchAdapter extends RecyclerView.Adapter <AnimeWatchAdapter.V
         //set the image to the holder image
         String imgUrl = anime.get(position).getIMG_URL();
 
+        //set up the image
         Picasso.get()
                 .load(imgUrl)
                 .fit()
@@ -82,31 +80,29 @@ public class AnimeWatchAdapter extends RecyclerView.Adapter <AnimeWatchAdapter.V
         holder.tvAnimeName.setText(anime.get(position).getANIME_NAME());
         holder.tvEpisodes.setText("Episodes: "+anime.get(position).getEPISODES());
 
-        //remove the item has been set to done
-        holder.btDone.setOnClickListener(v->{
+        //find the one need to be remove using query (whereEqualTo)
+        holder.btDone.setOnClickListener(v-> FBSTORE.collection("userAnime")
+                .document(USER_ID)
+                .collection("toWatch")
+                .whereEqualTo("Title",anime.get(position).getANIME_NAME())
+                .get()
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        for (QueryDocumentSnapshot document: task.getResult()){
+                            String documentID = document.getId();
 
-            FBSTORE.collection("userAnime")
-                    .document(USER_ID)
-                    .collection("toWatch")
-                    .whereEqualTo("Title",anime.get(position).getANIME_NAME())
-                    .get()
-                    .addOnCompleteListener(task -> {
-                        if(task.isSuccessful()){
-                            for (QueryDocumentSnapshot document: task.getResult()){
-                                String documentID = document.getId();
-
-                                FBSTORE.collection("userAnime")
-                                        .document(USER_ID)
-                                        .collection("toWatch")
-                                        .document(documentID)
-                                        .delete()
-                                        .addOnSuccessListener(unused ->removeItem(holder.getAdapterPosition()))
-                                        .addOnFailureListener(e -> Log.d("Sheesh", e.getMessage()));
-                            }
+                            //remove the item
+                            FBSTORE.collection("userAnime")
+                                    .document(USER_ID)
+                                    .collection("toWatch")
+                                    .document(documentID)
+                                    .delete()
+                                    .addOnSuccessListener(unused ->removeItem(holder.getAdapterPosition()))
+                                    .addOnFailureListener(e -> Log.d("Sheesh", e.getMessage()));
                         }
-                    })
-                    .addOnFailureListener(e -> Log.d("Sheesh", e.getMessage()));
-        });
+                    }
+                })
+                .addOnFailureListener(e -> Log.d("Sheesh", e.getMessage())));
     }
 
     @Override

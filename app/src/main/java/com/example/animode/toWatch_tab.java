@@ -1,17 +1,14 @@
 package com.example.animode;
 
 import android.os.Bundle;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -40,9 +37,9 @@ public class toWatch_tab extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_to_watch_tab, container, false);
 
+        //set up recycler view
         recyclerView = view.findViewById(R.id.rvToWatch);
         recyclerView.setHasFixedSize(true);
-
         layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new AnimeWatchAdapter(list, firestore, userId);
@@ -64,13 +61,13 @@ public class toWatch_tab extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
         list = new ArrayList<>();
-        getAnimeList();
+        getAnimeList(); //fetch save anime data
 
     }
 
     private void getAnimeList() {
 
-        flag=0;
+        flag=0; //checking for existing
         firestore.collection("userAnime")
                 .document(userId)
                 .collection("toWatch")
@@ -79,6 +76,8 @@ public class toWatch_tab extends Fragment {
                     for (DocumentSnapshot documentSnapshot: queryDocumentSnapshots){
                         if(documentSnapshot.exists()){
                             flag=1;
+
+                            //fetch data
                             String title = documentSnapshot.getString("Title");
                             String episode = documentSnapshot.getString("Episode");
                             String img_Url = documentSnapshot.getString("Image");
@@ -87,8 +86,10 @@ public class toWatch_tab extends Fragment {
 
                     }
 
+                    //add to the recycler if there's a record
                     if(flag==1){
                         llNoWatchList.setVisibility(View.GONE);
+                        //add anime list in the recyclerview
                         adapter = new AnimeWatchAdapter(list, firestore, userId);
                         recyclerView.setAdapter(adapter);
                     }

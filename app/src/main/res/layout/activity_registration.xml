@@ -5,12 +5,13 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".registrationpage"
-    android:padding="15dp"
-    tools:ignore="hardCodedText, UselessParent, Autofill, ContentDescription">
+    android:paddingHorizontal="25dp"
+    tools:ignore="hardCodedText, UselessParent, Autofill">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,101 +23,115 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/logo"
                 android:layout_gravity="center"
-                android:layout_margin=".2in"/>
+                android:layout_margin=".2in"
+                tools:ignore="ContentDescription" />
 
 
-            <TextView
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/first_name"
-                android:textSize="20sp"
-                android:padding="5dp"
-                android:textColor="#FFFFFF"/>
-
-            <EditText
-                android:id="@+id/etFname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="ex: Juan"
                 android:background="@drawable/border_style"
-                android:padding="15dp"
-                android:layout_marginBottom="15dp" />
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:layout_marginVertical="15dp">
 
-            <TextView
+                <EditText
+                    android:id="@+id/etFname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:hint="@string/first_name"
+                    android:inputType="text"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/last_name"
-                android:textSize="20sp"
-                android:padding="5dp"
-                android:textColor="#FFFFFF"/>
-
-            <EditText
-                android:id="@+id/etLname"
-                android:inputType="text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="ex: Dela Cruz"
                 android:background="@drawable/border_style"
-                android:padding="15dp"
-                android:layout_marginBottom="15dp" />
+                android:gravity="center_vertical"
+                android:layout_marginVertical="15dp"
+                android:padding="10dp">
+
+                <EditText
+                    android:id="@+id/etLname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:hint="@string/last_name"
+                    android:inputType="text"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-            <TextView
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/email_address"
-                android:textSize="20sp"
-                android:padding="5dp"
-                android:textColor="#FFFFFF"/>
-
-            <EditText
-                android:id="@+id/etEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/ex_juandelacruz_gmail_com"
                 android:background="@drawable/border_style"
-                android:inputType="textEmailAddress"
-                android:padding="15dp"
-                android:layout_marginBottom="15dp" />
+                android:gravity="center_vertical"
+                android:layout_marginVertical="15dp"
+                android:padding="10dp">
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent"
+                    android:hint="@string/email_address"
+                    android:inputType="textEmailAddress"
+                    android:textSize="20sp"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-            <TextView
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/password"
-                android:textSize="20sp"
-                android:padding="5dp"
-                android:textColor="#FFFFFF"/>
-
-            <EditText
-                android:id="@+id/etPass"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="Must contain at least 8 characters."
                 android:background="@drawable/border_style"
-                android:padding="15dp"
-                android:layout_marginBottom="15dp" />
+                android:gravity="center_vertical"
+                android:layout_marginVertical="15dp"
+                android:padding="10dp">
+
+                <EditText
+                    android:id="@+id/etPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    tools:ignore="VisualLintTextFieldSize,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
 
-            <TextView
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/confirm_password"
-                android:textSize="20sp"
-                android:padding="5dp"
-                android:textColor="#FFFFFF"/>
-
-            <EditText
-                android:id="@+id/etConPass"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="Must contain at least 6 characters."
                 android:background="@drawable/border_style"
-                android:padding="15dp" />
+                android:gravity="center_vertical"
+                android:layout_marginVertical="15dp"
+                android:padding="10dp">
+
+                <EditText
+                    android:id="@+id/etConPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:hint="@string/confirm_password"
+                    android:inputType="textPassword"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
 
             <Button
@@ -125,10 +140,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/register"
                 android:background="@drawable/reg_btn"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp" />
+                android:layout_marginVertical="10dp"
+                android:layout_gravity="center_horizontal"
+                tools:ignore="VisualLintButtonSize" />
 
             <TextView
+                android:id="@+id/tvBack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="go back"
