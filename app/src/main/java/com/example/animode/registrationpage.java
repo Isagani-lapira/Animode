@@ -96,12 +96,10 @@ public class registrationpage extends AppCompatActivity {
         //check if the field has a missing input
         for(EditText editText: editTexts){
             if(editText.getText().toString().equals("")){
-                editText.setError("Please answer all the input fields!");
                 flag=1;
             }
 
         }
-
         return (flag==1)?true:false;
     }
 
