@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
-public class homepage extends AppCompatActivity implements CustomAdapter.itemClicked{
+public class homepage extends AppCompatActivity{
 
     BottomNavigationView bnNavigation;
 
@@ -53,13 +53,5 @@ public class homepage extends AppCompatActivity implements CustomAdapter.itemCli
                 .commit();
     }
 
-    @Override
-    public void onItemClicked(int index,int ID) {
-        //show the details for specific anime
-        Intent intent = new Intent(this,individual_anime.class);
-        intent.putExtra("position",index);
-        intent.putExtra("ID",ID);
-        startActivity(intent);
-    }
 
 }

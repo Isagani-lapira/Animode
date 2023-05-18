@@ -31,4 +31,9 @@
         android:layout_margin="10dp"
         android:textColor="@color/accent_color"
         android:textStyle="bold"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAnimeList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

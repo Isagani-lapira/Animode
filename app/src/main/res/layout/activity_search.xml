@@ -50,7 +50,7 @@
         android:id="@+id/loading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/loading"
+        android:src="@drawable/loading_cat"
         android:visibility="gone"/>
     <ScrollView
         android:id="@+id/svContainer"

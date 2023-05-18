@@ -1,136 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".profile_tab">
+    android:orientation="vertical"
+    android:background="@color/accent_color"
+    tools:context=".profile_tab"
+    tools:ignore="hardcodedtext">
 
-    <ScrollView
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1.2in"
-            android:src="#DDDDDD"/>
-
-        <ImageView
-            android:layout_width="1in"
-            android:layout_height="1in"
-            android:src="@drawable/img"
-            android:layout_marginTop="110dp"
-            android:layout_marginLeft="10dp"/>
-
-        <Button
-            android:id="@+id/edit"
-            android:layout_width=".8in"
-            android:layout_height=".25in"
-            android:backgroundTint="@color/accent_color"
-            android:background="@drawable/profile_btn"
-            android:text="Edit"
-            android:textSize="20sp"
-            android:layout_marginLeft="1.6in"
-            android:layout_marginTop=".88in"
-            android:alpha=".40"/>
-
-    </FrameLayout>
-
+        android:layout_height="150dp"
+        android:src="@drawable/cat_logo"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         android:text="Account Details"
+        android:background="#C86610"
+        android:textColor="#FFFFFF"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:padding="5dp"
-        android:textColor="#FFFFFF"/>
+        android:textStyle="bold" />
 
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/first_name"
-        android:textSize="20sp"
-        android:padding="5dp"
-        android:textColor="#FFFFFF"/>
-
-    <TextView
-        android:id="@+id/tvFname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border_style"
-        android:padding="15dp"
-        android:layout_marginBottom="15dp"
-        android:textSize="20sp"
-        android:textColor="#000000"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/last_name"
-        android:textSize="20sp"
-        android:padding="5dp"
-        android:textColor="#FFFFFF"/>
-
-    <TextView
-        android:id="@+id/tvLname"
-        android:inputType="text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border_style"
-        android:padding="15dp"
-        android:textSize="20sp"
-        android:layout_marginBottom="15dp" />
+        android:layout_height="match_parent"
+        android:background="@color/primary_color"
+        android:orientation="vertical"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="25dp">
 
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/first_name"
+            android:textColor="#A6A5A5" />
+
+        <TextView
+            android:id="@+id/tvFname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/white_color"
+            android:text="Isagani"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/last_name"
+            android:textColor="#A6A5A5" />
+
+        <TextView
+            android:id="@+id/tvLname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:inputType="text"
+            android:text="Lapira"
+            android:textColor="@color/white_color"
+            android:textSize="24sp"
+            tools:ignore="TextViewEdits,TouchTargetSizeCheck" />
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/email_address"
-        android:textSize="20sp"
-        android:padding="5dp"
-        android:textColor="#FFFFFF"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/email_address"
+            android:textColor="#A6A5A5" />
 
-    <TextView
-        android:id="@+id/tvEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border_style"
-        android:padding="15dp"
-        android:textSize="20sp"
-        android:layout_marginBottom="15dp" />
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/white_color"
+            android:text="isagani lapira"
+            android:textSize="24sp" />
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/password"
-        android:textSize="20sp"
-        android:padding="5dp"
-        android:textColor="#FFFFFF"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/password"
+            android:textColor="#A6A5A5" />
 
-    <TextView
-        android:id="@+id/tvPass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border_style"
-        android:padding="15dp"
-        android:textSize="20sp"
-        android:layout_marginBottom="80dp" />
+        <TextView
+            android:id="@+id/tvPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white_color"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+            android:gravity="bottom">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/logout"/>
+            <TextView
+                android:id="@+id/tvSignout"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Sign out"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </LinearLayout>
-    </ScrollView>
-
-
-</FrameLayout>

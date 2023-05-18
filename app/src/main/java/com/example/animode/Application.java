@@ -1,10 +1,13 @@
 package com.example.animode;
 
 
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
@@ -17,12 +20,14 @@ public class Application extends android.app.Application {
 
     public static ArrayList<MyAnime>myAnime_list;
     public static ArrayList<MyAnime>random;
+    public static ArrayList<MyAnime>list;
     @Override
     public void onCreate() {
         super.onCreate();
 
         myAnime_list = new ArrayList<>();
         random = new ArrayList<>();
+        list = new ArrayList<>();
 
         //make a request
         //get trending anime list
@@ -64,6 +69,7 @@ public class Application extends android.app.Application {
         rq.add(objReq);
 
         getRandomAnime();
+        getAnime25();
     }
 
     private void getRandomAnime() {
@@ -104,6 +110,46 @@ public class Application extends android.app.Application {
 
                 });
 
+
+        rq.add(objectRequest);
+    }
+
+    public void getAnime25(){
+        RequestQueue rq = Volley.newRequestQueue(this);
+        rq.start();
+
+        //url for request
+        String URL = "https://kitsu.io/api/edge/anime?page[limit]=20";
+
+        //get the json in Kitsu API
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, URL, null,
+                response -> {
+
+                    try {
+                        JSONArray data = response.getJSONArray("data");
+                        //retrieve 25 data from the API
+                        for(int i = 0; i<data.length(); i++){
+                            JSONObject obj = data.getJSONObject(i);
+                            JSONObject attribute = obj.getJSONObject("attributes");
+
+                            //image
+                            JSONObject posterImage = attribute.getJSONObject("posterImage");
+                            String image = posterImage.getString("medium");
+
+                            //for title
+                            String title = attribute.getString("canonicalTitle");
+                            String episodes = attribute.getString("episodeCount"); //episodes
+
+                            //save every data in the array
+                            list.add(new MyAnime(image,title,episodes,2));
+                        }
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                },
+                error -> {
+
+                });
 
         rq.add(objectRequest);
     }

@@ -2,6 +2,7 @@ package com.example.animode;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,25 +10,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
     final ArrayList<MyAnime>anime_list;
-    static itemClicked activity;
     private int ID;
-
-    //item listener
-    public interface itemClicked{
-        void onItemClicked(int position,int ID);
-    }
+    Context context;
 
     public CustomAdapter(Context context, ArrayList<MyAnime>anime_list){
         this.anime_list = anime_list;
-        activity = (itemClicked)context;
+        this.context = context;
     }
 
 
@@ -43,13 +37,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             tvAnime = itemView.findViewById(R.id.tvAnime);
             tvEpisodes = itemView.findViewById(R.id.tvEpisodes);
 
-            //clicked specific item
+            //clicked specific item to be redirect to individual anime to show details
             itemView.setOnClickListener(v-> {
                 int pos = anime_list.indexOf((MyAnime) v.getTag());
-                int ID = anime_list.get(pos).getID();
-
-                activity.onItemClicked(pos,ID);
-                anime_list.indexOf((MyAnime) v.getTag());
+                Intent intent = new Intent(context, individual_anime.class);
+                intent.putExtra("position",pos);
+                intent.putExtra("ID",ID);
+                context.startActivity(intent);
             });
 
         }
@@ -81,7 +75,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         ID = anime_list.get(position).getID();
         holder.tvAnime.setText(anime_list.get(position).getANIME_NAME());
         holder.tvEpisodes.setText("episodes: "+anime_list.get(position).getEPISODES());
-
 
     }
 
