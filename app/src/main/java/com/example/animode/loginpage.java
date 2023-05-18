@@ -28,6 +28,9 @@ public class loginpage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
+
+        //change the statusbar color
+        getWindow().setStatusBarColor(getColor(R.color.accent_color));
         initialize();
         listener();
 

@@ -45,11 +45,20 @@ public class individual_anime extends AppCompatActivity {
 
         intent = getIntent();
         int position = intent.getIntExtra("position",0);
-        //get the selected anime name and attribute
+        int ID = intent.getIntExtra("ID",0);
 
-        imgURL = Application.myAnime_list.get(position).getIMG_URL();
-        anime_name = Application.myAnime_list.get(position).getANIME_NAME();
-        episodes =  Application.myAnime_list.get(position).getEPISODES();
+        //get the selected anime name and attribute
+        if(ID==0){
+            imgURL = Application.myAnime_list.get(position).getIMG_URL();
+            anime_name = Application.myAnime_list.get(position).getANIME_NAME();
+            episodes =  Application.myAnime_list.get(position).getEPISODES();
+        }
+        else{
+            imgURL = Application.random.get(position).getIMG_URL();
+            anime_name = Application.random.get(position).getANIME_NAME();
+            episodes =  Application.random.get(position).getEPISODES();
+        }
+
         initialize();
         setVal(anime_name, episodes); //show details about a selected anime
         listener();

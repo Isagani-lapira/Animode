@@ -35,9 +35,9 @@ public class profile_tab extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_profile_tab, container, false);
-
-        i();
-        l();
+//
+//        i();
+//        l();
 
         return view;
     }

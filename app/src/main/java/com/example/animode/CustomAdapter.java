@@ -18,10 +18,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     final ArrayList<MyAnime>anime_list;
     static itemClicked activity;
+    private int ID;
 
     //item listener
     public interface itemClicked{
-        void onItemClicked(int position);
+        void onItemClicked(int position,int ID);
     }
 
     public CustomAdapter(Context context, ArrayList<MyAnime>anime_list){
@@ -43,8 +44,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             tvEpisodes = itemView.findViewById(R.id.tvEpisodes);
 
             //clicked specific item
-            itemView.setOnClickListener(v->{
-                activity.onItemClicked(anime_list.indexOf((MyAnime) v.getTag()));
+            itemView.setOnClickListener(v-> {
+                int pos = anime_list.indexOf((MyAnime) v.getTag());
+                int ID = anime_list.get(pos).getID();
+
+                activity.onItemClicked(pos,ID);
+                anime_list.indexOf((MyAnime) v.getTag());
             });
 
         }
@@ -73,6 +78,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 .load(imgUrl)
                 .into(holder.ivImage);
 
+        ID = anime_list.get(position).getID();
         holder.tvAnime.setText(anime_list.get(position).getANIME_NAME());
         holder.tvEpisodes.setText("episodes: "+anime_list.get(position).getEPISODES());
 

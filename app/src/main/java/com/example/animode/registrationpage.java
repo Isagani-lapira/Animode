@@ -7,19 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,7 +20,7 @@ public class registrationpage extends AppCompatActivity {
     private FirebaseAuth rauth;
     private FirebaseFirestore fs;
     private TextView tvBack;
-    private Context context = registrationpage.this;
+    private final Context CONTEXT = registrationpage.this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +33,7 @@ public class registrationpage extends AppCompatActivity {
     }
 
     private void listener() {
-        tvBack.setOnClickListener(v->{
-            startActivity(new Intent(context, loginpage.class));
-        });
+        tvBack.setOnClickListener(v-> startActivity(new Intent(CONTEXT, loginpage.class)));
     }
 
     private void initialize() {
@@ -64,52 +52,32 @@ public class registrationpage extends AppCompatActivity {
 
     private void fnctn() {
         btnReg.setOnClickListener(v -> {
-            String ea = etEmail.getText().toString();
-            String pw = etPass.getText().toString();
-            String fn = etFname.getText().toString();
-            String ln = etLname.getText().toString();
-            String cpw = etConPass.getText().toString();
+            String email = etEmail.getText().toString();
+            String password = etPass.getText().toString();
+            String firstname = etFname.getText().toString();
+            String lastname = etLname.getText().toString();
 
             if(isFieldMissing()){
-                Toast.makeText(context, "Please answer all the input fields.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CONTEXT, "Please answer all the input fields.", Toast.LENGTH_SHORT).show();
             }
-
-//            else if (pw!=cpw){
-//                Toast.makeText(context, "Password and Confirm Password must match!", Toast.LENGTH_SHORT).show();
-//            }
-
-
            else{
-                rauth.createUserWithEmailAndPassword(ea, pw).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
+                rauth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
 
-                            Map<String, Object> accs = new HashMap<>();
-                            accs.put("email", ea);
-                            accs.put("password", pw);
-                            accs.put("fname", fn);
-                            accs.put("lname", ln);
+                        Map<String, Object> accs = new HashMap<>();
+                        accs.put("email", email);
+                        accs.put("password", password);
+                        accs.put("fname", firstname);
+                        accs.put("lname", lastname);
 
-                            fs.collection("Persons")
-                                    .add(accs)
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                        @Override
-                                        public void onSuccess(DocumentReference documentReference) {
-                                            Toast.makeText(registrationpage.this, "Registered Succesfully!", Toast.LENGTH_SHORT).show();
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(registrationpage.this, "Error, please try again!!!!!", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
+                        fs.collection("Persons")
+                                .add(accs)
+                                .addOnSuccessListener(documentReference -> Toast.makeText(registrationpage.this, "Registered Succesfully!", Toast.LENGTH_SHORT).show())
+                                .addOnFailureListener(e -> Toast.makeText(registrationpage.this, "Error, please try again!!!!!", Toast.LENGTH_SHORT).show());
 
-                            startActivity(new Intent(registrationpage.this, loginpage.class));
-                        } else {
-                            Toast.makeText(registrationpage.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
-                        }
+                        startActivity(new Intent(registrationpage.this, loginpage.class));
+                    } else {
+                        Toast.makeText(registrationpage.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -134,10 +102,7 @@ public class registrationpage extends AppCompatActivity {
 
         }
 
-        if (flag == 1) {
-            return true;
-        }
-        return false;
+        return (flag==1)?true:false;
     }
 
 }

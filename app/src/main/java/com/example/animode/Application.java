@@ -1,38 +1,28 @@
 package com.example.animode;
 
 
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.Objects;
 
 public class Application extends android.app.Application {
 
     public static ArrayList<MyAnime>myAnime_list;
-    public static ArrayList<MyAnime>watchList;
+    public static ArrayList<MyAnime>random;
     @Override
     public void onCreate() {
         super.onCreate();
 
         myAnime_list = new ArrayList<>();
-        watchList = new ArrayList<>();
+        random = new ArrayList<>();
 
         //make a request
         //get trending anime list
@@ -61,7 +51,7 @@ public class Application extends android.app.Application {
                             String enTitle = title.getString("en");
                             String episodes = attributes.getString("episodeCount"); //episodes
 
-                            myAnime_list.add(new MyAnime(image,enTitle,episodes));
+                            myAnime_list.add(new MyAnime(image,enTitle,episodes,0));
 
                         }
                     } catch (JSONException e) {
@@ -69,13 +59,53 @@ public class Application extends android.app.Application {
                     }
 
 
-                }, error -> {
-            Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
-        });
+                }, error -> Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show());
 
         rq.add(objReq);
 
+        getRandomAnime();
+    }
 
+    private void getRandomAnime() {
+        RequestQueue rq = Volley.newRequestQueue(getApplicationContext());
+        rq.start();
+
+        //url for request
+        String URL = "https://kitsu.io/api/edge/anime?page[limit]=15";
+
+        //get api object
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, URL, null,
+                response -> {
+                    //get data
+                    try {
+                        JSONArray data = response.getJSONArray("data");
+
+                        //get 15 anime
+                        for (int i = 0; i<data.length(); i++){
+                            JSONObject attribute = data.getJSONObject(i);
+                            JSONObject attributes = attribute.getJSONObject("attributes");
+
+                            //image
+                            JSONObject posterImage = attributes.getJSONObject("posterImage");
+                            String image = posterImage.getString("medium");
+
+                            //for title
+                            String title = attributes.getString("canonicalTitle");
+                            String episodes = attributes.getString("episodeCount"); //episodes
+
+                            //save every data in the array
+                            random.add(new MyAnime(image,title,episodes,1));
+                        }
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                },
+                error -> {
+
+                });
+
+
+        rq.add(objectRequest);
     }
 
 }

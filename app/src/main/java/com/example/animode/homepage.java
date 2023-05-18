@@ -54,10 +54,11 @@ public class homepage extends AppCompatActivity implements CustomAdapter.itemCli
     }
 
     @Override
-    public void onItemClicked(int index) {
+    public void onItemClicked(int index,int ID) {
         //show the details for specific anime
         Intent intent = new Intent(this,individual_anime.class);
         intent.putExtra("position",index);
+        intent.putExtra("ID",ID);
         startActivity(intent);
     }
 

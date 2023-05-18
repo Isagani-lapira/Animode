@@ -1,5 +1,6 @@
 package com.example.animode;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -25,6 +27,7 @@ public class toWatch_tab extends Fragment {
     private LinearLayout llNoWatchList;
     FirebaseFirestore firestore;
     String userId;
+    Button btViewAnime;
 
 
     public toWatch_tab() {
@@ -44,6 +47,7 @@ public class toWatch_tab extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         adapter = new AnimeWatchAdapter(list, firestore, userId);
         llNoWatchList = view.findViewById(R.id.llNoWatchList);
+        btViewAnime = view.findViewById(R.id.btViewAnime);
 
         // Inflate the layout for this fragment
         return view;
@@ -63,6 +67,10 @@ public class toWatch_tab extends Fragment {
         list = new ArrayList<>();
         getAnimeList(); //fetch save anime data
 
+
+        btViewAnime.setOnClickListener(v->{
+            startActivity(new Intent(getActivity(),AnimeListAct.class));
+        });
     }
 
     private void getAnimeList() {
@@ -81,7 +89,7 @@ public class toWatch_tab extends Fragment {
                             String title = documentSnapshot.getString("Title");
                             String episode = documentSnapshot.getString("Episode");
                             String img_Url = documentSnapshot.getString("Image");
-                            list.add(new MyAnime(img_Url,title,episode));
+                            list.add(new MyAnime(img_Url,title,episode,0));
                         }
 
                     }
@@ -96,6 +104,4 @@ public class toWatch_tab extends Fragment {
 
                 });
     }
-
-
 }

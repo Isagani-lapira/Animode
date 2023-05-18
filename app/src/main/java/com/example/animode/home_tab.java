@@ -22,7 +22,7 @@ public class home_tab extends Fragment {
     VideoView vvVideo;
     View view;
 
-    RecyclerView recyclerView;
+    RecyclerView recyclerView, rvRandom;
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter adapter;
     ArrayList<MyAnime> list;
@@ -60,18 +60,33 @@ public class home_tab extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        //set up the recyler view
-        recyclerView = view.findViewById(R.id.recyler);
-        recyclerView.setHasFixedSize(true);
 
-        int numColumn = 2;
+        //set up the recyler view for trending anime
+        recyclerView = view.findViewById(R.id.recyler);
+        apiRequest(recyclerView,0);
+
+
+        //set up the recycler view for random anime
+        rvRandom = view.findViewById(R.id.rvRandom);
+        apiRequest(rvRandom,1);
+
+    }
+
+    private void apiRequest(RecyclerView recyclerView,int ID) {
+        recyclerView.setHasFixedSize(true);
+        int numColumn = 3;
         layoutManager = new GridLayoutManager(getActivity(),numColumn, GridLayoutManager.VERTICAL,
                 false);
         recyclerView.setLayoutManager(layoutManager);
-        list = Application.myAnime_list;
+        if(ID==0)
+            list = Application.myAnime_list;
+        else
+            list = Application.random;
+
         adapter = new CustomAdapter(this.getActivity(),list);
         recyclerView.setAdapter(adapter);
     }
+
 
     //display the video coming from resource
     private void setVideo() {
