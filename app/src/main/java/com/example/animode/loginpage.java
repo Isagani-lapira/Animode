@@ -2,6 +2,7 @@ package com.example.animode;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ public class loginpage extends AppCompatActivity {
             }
 
             //enable the button to be enabled
+            @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String email = etEmail.getText().toString().trim();
