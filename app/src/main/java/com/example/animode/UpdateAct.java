@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -111,7 +112,9 @@ public class UpdateAct extends AppCompatActivity {
 
         Button btCancel = customLayout.findViewById(R.id.btCancel);
         Button btOkay = customLayout.findViewById(R.id.btOkay);
+        TextView tvDescript = customLayout.findViewById(R.id.tvDescript);
 
+        tvDescript.setText("You are about to update information \nDo you want to continue?");
         //cancel the log out
         btCancel.setOnClickListener(v-> dialog.dismiss());
         //log out the user
