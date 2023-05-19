@@ -28,6 +28,7 @@ public class registrationpage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
+        getWindow().setStatusBarColor(getResources().getColor(R.color.accent_color));
         initialize();
         fnctn();
         listener();
@@ -98,6 +99,7 @@ public class registrationpage extends AppCompatActivity {
         //check if the field has a missing input
         for(EditText editText: editTexts){
             if(editText.getText().toString().equals("")){
+                editText.setError("Missing field");
                 flag=1;
             }
 

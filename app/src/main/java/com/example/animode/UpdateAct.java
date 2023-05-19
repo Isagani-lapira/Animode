@@ -69,42 +69,42 @@ public class UpdateAct extends AppCompatActivity {
         String LName = etLname.getText().toString();
         String Pass = etPass.getText().toString();
 
-        if(FName.equals("") && LName.equals("") && Pass.equals(""))
-            Toast.makeText(context, "Complete the fields", Toast.LENGTH_SHORT).show();
-        else{
-            docRef.get()
-                    .addOnSuccessListener(documentSnapshot -> {
-                        if (documentSnapshot.exists()) {
-                            Map<String, Object> newData = new HashMap<>();
-                            newData.put("fname", FName);
-                            newData.put("lname", LName);
-                            newData.put("password", Pass);
+        docRef.get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
 
-                            //update new data
-                            docRef.update(newData)
-                                    .addOnSuccessListener(success -> {
-                                        //update first the password
-                                        auth.updatePassword(Pass).addOnSuccessListener(unused -> {
-                                            Toast.makeText(context, "Updated successfully", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(context, homepage.class));
-                                        }).addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show());
+                        //store a new data
+                        Map<String, Object> newData = new HashMap<>();
+                        newData.put("fname", FName);
+                        newData.put("lname", LName);
+                        newData.put("password", Pass);
 
-                                    })
-                                    .addOnFailureListener(failure -> Toast.makeText(context, failure.getMessage(), Toast.LENGTH_SHORT).show());
-                        }
-                    })
-                    .addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show());
-        }
+                        //update new old data using the store data above
+                        docRef.update(newData)
+                                .addOnSuccessListener(success -> {
+                                    //update first the password
+                                    auth.updatePassword(Pass).addOnSuccessListener(unused -> {
+                                        Toast.makeText(context, "Updated successfully", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(context, homepage.class));
+                                    }).addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show());
 
-        
+                                })
+                                .addOnFailureListener(failure -> Toast.makeText(context, failure.getMessage(), Toast.LENGTH_SHORT).show());
+                    }
+                })
+                .addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show());
+
+
+
     }
 
     //alert dialog
     private void proceed(){
+
         LayoutInflater inflater = LayoutInflater.from(context);
         View customLayout = inflater.inflate(R.layout.alert_dial_layout, null);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(context,R.style.TransparentAlertDialogTheme);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.TransparentAlertDialogTheme);
         builder.setView(customLayout);
 
         Dialog dialog = builder.create();
@@ -116,10 +116,11 @@ public class UpdateAct extends AppCompatActivity {
 
         tvDescript.setText("You are about to update information \nDo you want to continue?");
         //cancel the log out
-        btCancel.setOnClickListener(v-> dialog.dismiss());
+        btCancel.setOnClickListener(v -> dialog.dismiss());
         //log out the user
-        btOkay.setOnClickListener(v-> updateInfo());
+        btOkay.setOnClickListener(v -> updateInfo());
 
     }
+
 }
 

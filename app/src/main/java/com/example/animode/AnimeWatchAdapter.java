@@ -12,8 +12,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -103,6 +105,7 @@ public class AnimeWatchAdapter extends RecyclerView.Adapter <AnimeWatchAdapter.V
         holder.tvAnimeName.setText(anime.get(position).getANIME_NAME());
         holder.tvEpisodes.setText("Episodes: "+anime.get(position).getEPISODES());
 
+
         //find the one need to be remove using query (whereEqualTo)
         holder.btDone.setOnClickListener(v->
                 FBSTORE.collection("userAnime")
@@ -125,7 +128,7 @@ public class AnimeWatchAdapter extends RecyclerView.Adapter <AnimeWatchAdapter.V
                                         removeItem(holder.getAdapterPosition());
                                         notifyDataSetChanged();
                                     })
-                                    .addOnFailureListener(e -> Log.d("Sheesh", e.getMessage()));
+                                    .addOnFailureListener(e -> Toast.makeText(CONTEXT, e.getMessage(), Toast.LENGTH_SHORT).show());
                         }
                     }
                     else{
@@ -197,7 +200,7 @@ public class AnimeWatchAdapter extends RecyclerView.Adapter <AnimeWatchAdapter.V
                 .fit()
                 .into(ivAnimeImage);
 
-
+        //display dialog
         Dialog dialog = builder.create();
         dialog.show();
     }
