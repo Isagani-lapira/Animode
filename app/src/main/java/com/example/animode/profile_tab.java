@@ -4,18 +4,19 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+import androidx.fragment.app.Fragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.Map;
 
 public class profile_tab extends Fragment {
 
@@ -55,36 +56,41 @@ public class profile_tab extends Fragment {
     }
 
     private void listener() {
-        if (user != null) {
-            String uemail = user.getEmail();
+        String userID = user.getUid();
 
-            fs.collection("Persons")
-                    .whereEqualTo("email", uemail)
-                    .get()
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            QuerySnapshot ss = task.getResult();
-                            DocumentSnapshot docu = ss.getDocuments().get(0);
-                            String em = docu.getString("email");
-                            Pass = docu.getString("password"); //To fix to replace it with asterisk based on its length
-                            FName= docu.getString("fname");
-                            LName = docu.getString("lname");
+        DocumentReference userRef = fs.collection("Persons").document(userID);
+        userRef.get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if(documentSnapshot.exists()) {
+                        // User data found
+                        Map<String, Object> userData = documentSnapshot.getData();
+                        // Access specific fields
 
-                            // Replace each character in password with an asterisk just for profile tab
-                            int inputLength = Pass.length();
-                            StringBuilder rep = new StringBuilder();
-                            for (int i = 0; i < inputLength; i++) {
-                                rep.append("*");
-                            }
+                        String em = (String) userData.get("email");
+                        Pass = (String) userData.get("password"); //To fix to replace it with asterisk based on its length
+                        FName= (String) userData.get("fname");
+                        LName = (String) userData.get("lname");
 
-                            //set up details to profile field
-                            tvEmail.setText(em);
-                            String fullname = FName+" "+LName;
-                            tvFname.setText(fullname);
-                            tvPass.setText(rep.toString()); //To fix to replace it with asterisk based on its length
+                        // Replace each character in password with an asterisk just for profile tab
+                        int inputLength = Pass.length();
+                        StringBuilder rep = new StringBuilder();
+                        for (int i = 0; i < inputLength; i++) {
+                            rep.append("*");
                         }
-                    });
-        }
+
+                        //set up details to profile field
+                        tvEmail.setText(em);
+                        String fullname = FName+" "+LName;
+                        tvFname.setText(fullname);
+                        tvPass.setText(rep.toString()); //To fix to replace it with asterisk based on its length
+
+                    } else {
+                        Toast.makeText(getActivity(), "Can't retrieve data. Try again", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(e -> {
+
+                });
+
         tvSignout.setOnClickListener(v-> logOut());
         btUpdate.setOnClickListener(v-> {
             Intent intent = new Intent(getContext(), UpdateAct.class);
