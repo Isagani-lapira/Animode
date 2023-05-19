@@ -21,7 +21,8 @@
         app:itemTextAppearanceInactive="@style/BottomNavInactiveText"
         app:itemIconTint="@color/bottom_nav_icon_color"
         app:labelVisibilityMode="selected"
-        app:menu="@menu/menu" />
+        app:menu="@menu/menu"
+        tools:ignore="VisualLintBottomNav" />
 
     <FrameLayout
         android:id="@+id/flFrame"

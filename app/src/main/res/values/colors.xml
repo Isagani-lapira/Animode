@@ -9,5 +9,6 @@
     <color name="bottomBar_color">#333232</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="watch_color">#FFEB3B</color>
+    <color name="listed_color">#31D88A</color>
 
 </resources>

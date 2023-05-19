@@ -11,7 +11,9 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:src="@drawable/cat_logo"/>
+        android:src="@drawable/cat_logo"
+        android:contentDescription="TODO"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:layout_width="match_parent"
@@ -27,7 +29,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primary_color"
+        android:background="@drawable/login_shape"
         android:orientation="vertical"
         android:paddingHorizontal="15dp"
         android:paddingVertical="25dp">
@@ -36,78 +38,71 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/first_name"
+            android:text="FULL NAME:"
             android:textColor="#A6A5A5" />
 
         <TextView
             android:id="@+id/tvFname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
+            android:layout_marginVertical="15dp"
             android:textColor="@color/white_color"
-            android:text="Isagani"
-            android:textSize="24sp" />
+            android:textSize="20sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/last_name"
-            android:textColor="#A6A5A5" />
-
-        <TextView
-            android:id="@+id/tvLname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:inputType="text"
-            android:text="Lapira"
-            android:textColor="@color/white_color"
-            android:textSize="24sp"
-            tools:ignore="TextViewEdits,TouchTargetSizeCheck" />
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/email_address"
+            android:text="EMAIL ADDRESS"
             android:textColor="#A6A5A5" />
 
         <TextView
             android:id="@+id/tvEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
+            android:layout_marginVertical="15dp"
             android:textColor="@color/white_color"
-            android:text="isagani lapira"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/password"
+            android:text="PASSWORD"
             android:textColor="#A6A5A5" />
 
         <TextView
             android:id="@+id/tvPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
             android:textColor="@color/white_color"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/accent_color"
+            android:text="update"
+            android:textColor="@color/primary_color" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            android:layout_marginTop="5dp"
             android:layout_gravity="bottom"
-            android:gravity="bottom">
+            android:gravity="bottom"
+            tools:ignore="UseCompoundDrawables">
 
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:src="@drawable/logout"/>
+                android:src="@drawable/logout"
+                tools:ignore="ContentDescription" />
             <TextView
                 android:id="@+id/tvSignout"
                 android:gravity="center_vertical"

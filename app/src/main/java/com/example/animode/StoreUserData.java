@@ -55,10 +55,8 @@ public class StoreUserData {
                                                     "Successfully added", Toast.LENGTH_SHORT).show();
                                             insertToWatch();
                                         })
-                                        .addOnFailureListener(failure->{
-                                            Toast.makeText(CONTEXT,
-                                                    failure.getMessage(), Toast.LENGTH_SHORT).show();
-                                        });
+                                        .addOnFailureListener(failure-> Toast.makeText(CONTEXT,
+                                                failure.getMessage(), Toast.LENGTH_SHORT).show());
                             }
                         }).addOnFailureListener(e -> Toast.makeText(CONTEXT, e.getMessage(), Toast.LENGTH_SHORT).show());
 

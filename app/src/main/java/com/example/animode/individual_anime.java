@@ -1,5 +1,6 @@
 package com.example.animode;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -70,6 +71,7 @@ public class individual_anime extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private void listener() {
         //return to the homepage
         btBack.setOnClickListener(v->{
@@ -79,6 +81,8 @@ public class individual_anime extends AppCompatActivity {
 
         btToWatch.setOnClickListener(v->{
             userData.insertToWatch();
+            btToWatch.setBackgroundColor(getColor(R.color.listed_color));
+            btToWatch.setText("Has been added to my list");
         });
     }
 

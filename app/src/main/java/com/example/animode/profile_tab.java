@@ -19,10 +19,12 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class profile_tab extends Fragment {
 
-    private TextView tvFname, tvLname, tvEmail, tvPass,tvSignout;
+    private TextView tvFname, tvEmail, tvPass,tvSignout;
     private FirebaseFirestore fs;
     private FirebaseUser user;
+    Button btUpdate;
     private View view;
+    private String FName, LName,Pass;
 
     public profile_tab() {
         // Required empty public constructor
@@ -32,6 +34,7 @@ public class profile_tab extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        getActivity().getWindow().setStatusBarColor(getResources().getColor(R.color.accent_color));
         view = inflater.inflate(R.layout.fragment_profile_tab, container, false);
         initialize();
         listener();
@@ -40,11 +43,10 @@ public class profile_tab extends Fragment {
     }
     private void initialize() {
         tvFname = view.findViewById(R.id.tvFname);
-        tvLname = view.findViewById(R.id.tvLname);
         tvEmail = view.findViewById(R.id.tvEmail);
         tvPass = view.findViewById(R.id.tvPass);
         tvSignout = view.findViewById(R.id.tvSignout);
-
+        btUpdate = view.findViewById(R.id.btUpdate);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         fs = FirebaseFirestore.getInstance();
@@ -64,12 +66,12 @@ public class profile_tab extends Fragment {
                             QuerySnapshot ss = task.getResult();
                             DocumentSnapshot docu = ss.getDocuments().get(0);
                             String em = docu.getString("email");
-                            String pw = docu.getString("password"); //To fix to replace it with asterisk based on its length
-                            String fn = docu.getString("fname");
-                            String ln = docu.getString("lname");
+                            Pass = docu.getString("password"); //To fix to replace it with asterisk based on its length
+                            FName= docu.getString("fname");
+                            LName = docu.getString("lname");
 
                             // Replace each character in password with an asterisk just for profile tab
-                            int inputLength = pw.length();
+                            int inputLength = Pass.length();
                             StringBuilder rep = new StringBuilder();
                             for (int i = 0; i < inputLength; i++) {
                                 rep.append("*");
@@ -77,14 +79,21 @@ public class profile_tab extends Fragment {
 
                             //set up details to profile field
                             tvEmail.setText(em);
-                            tvFname.setText(fn);
-                            tvLname.setText(ln);
+                            String fullname = FName+" "+LName;
+                            tvFname.setText(fullname);
                             tvPass.setText(rep.toString()); //To fix to replace it with asterisk based on its length
                         }
                     });
         }
-
         tvSignout.setOnClickListener(v-> logOut());
+        btUpdate.setOnClickListener(v-> {
+            Intent intent = new Intent(getContext(), UpdateAct.class);
+            intent.putExtra("firstname",FName);
+            intent.putExtra("lastname",LName);
+            intent.putExtra("password",Pass);
+            startActivity(intent);
+        });
+
     }
 
     private void logOut() {
@@ -100,8 +109,8 @@ public class profile_tab extends Fragment {
         dialog.show();
         Button btCancel = customLayout.findViewById(R.id.btCancel);
         Button btOkay = customLayout.findViewById(R.id.btOkay);
-        //cancel the log out
 
+        //cancel the log out
         btCancel.setOnClickListener(v-> dialog.dismiss());
         //log out the user
         btOkay.setOnClickListener(v->{

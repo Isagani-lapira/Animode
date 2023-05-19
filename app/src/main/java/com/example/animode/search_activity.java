@@ -1,5 +1,6 @@
 package com.example.animode;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -72,6 +73,7 @@ public class search_activity extends AppCompatActivity {
         loading = findViewById(R.id.loading);
     }
 
+    @SuppressLint("SetTextI18n")
     private void listener() {
         searchTextView.addTextChangedListener(new TextWatcher() {
             @Override
@@ -131,6 +133,9 @@ public class search_activity extends AppCompatActivity {
                 Toast.makeText(this, "Please input an anime", Toast.LENGTH_SHORT).show();
 
             else {
+                btToWatch.setBackgroundColor(getColor(R.color.accent_color));
+                btToWatch.setText("To watch");
+                ivAnimeImage.setVisibility(View.GONE);
                 svContainer.setVisibility(View.GONE);
                 loading.setVisibility(View.VISIBLE); //show the loading view
                 searchResultAPI(animeSearch);
@@ -146,10 +151,14 @@ public class search_activity extends AppCompatActivity {
             anime_name = tvAnimeName.getText().toString();
             userData = new StoreUserData(this,userID,anime_name,episodes,fbStore,imageLink); //details to be add on firestore
             userData.insertToWatch();
+
+            btToWatch.setBackgroundColor(getColor(R.color.listed_color));
+            btToWatch.setText("Has been added to my list");
         });
 
         btClear.setOnClickListener(v->{
             svContainer.setVisibility(View.GONE);
+            ivAnimeImage.setVisibility(View.GONE);
         });
     }
 
@@ -177,6 +186,7 @@ public class search_activity extends AppCompatActivity {
                             loading.setVisibility(View.GONE);
                             noResult.setVisibility(View.GONE);
                             svContainer.setVisibility(View.VISIBLE); //show the container
+                            ivAnimeImage.setVisibility(View.VISIBLE);//show image
                             JSONObject attributes = data.getJSONObject(0).getJSONObject("attributes");
 
                             //get image link

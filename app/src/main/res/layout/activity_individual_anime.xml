@@ -64,13 +64,14 @@
 
                 <Button
                     android:id="@+id/btToWatch"
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#B6A448"
+                    android:background="@color/accent_color"
                     android:paddingHorizontal="10dp"
                     android:text="To watch"
                     android:textColor="#4E342E"
-                    style="?android:attr/buttonBarButtonStyle" />
+                    tools:ignore="TextContrastCheck" />
             </LinearLayout>
 
         </LinearLayout>

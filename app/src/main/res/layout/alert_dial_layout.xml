@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
+    android:paddingHorizontal="15dp"
     android:background="@color/transparent"
     tools:ignore="hardcodedtext">
 
@@ -13,7 +14,9 @@
         android:layout_width="match_parent"
         android:background="@color/transparent"
         android:layout_height="65dp"
-        android:src="@drawable/cat_logo"/>
+        android:src="@drawable/cat_logo"
+        android:contentDescription="TODO"
+        tools:ignore="ContentDescription" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,9 +64,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:paddingHorizontal="10dp"
                 android:background="@drawable/accent_shape"
-                android:text="Ok" />
+                android:paddingHorizontal="10dp"
+                android:text="Ok"
+                android:textColor="@color/primary_color"
+                tools:ignore="ButtonStyle" />
         </LinearLayout>
 
     </LinearLayout>

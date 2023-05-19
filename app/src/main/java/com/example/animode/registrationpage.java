@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
@@ -69,9 +70,10 @@ public class registrationpage extends AppCompatActivity {
                         accs.put("password", password);
                         accs.put("fname", firstname);
                         accs.put("lname", lastname);
+                        String userId = rauth.getCurrentUser().getUid();
 
-                        fs.collection("Persons")
-                                .add(accs)
+                        DocumentReference userDocRef = fs.collection("Persons").document(userId);
+                        userDocRef.set(accs)
                                 .addOnSuccessListener(documentReference -> Toast.makeText(registrationpage.this, "Registered Succesfully!", Toast.LENGTH_SHORT).show())
                                 .addOnFailureListener(e -> Toast.makeText(registrationpage.this, "Error, please try again!!!!!", Toast.LENGTH_SHORT).show());
 

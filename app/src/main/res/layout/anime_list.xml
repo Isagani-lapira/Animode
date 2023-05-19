@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/LL"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -16,8 +17,9 @@
         <ImageView
             android:id="@+id/ivImage"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:scaleType="fitXY"/>
+            android:layout_height="100sp"
+            android:scaleType="fitXY"
+            tools:ignore="ContentDescription" />
 
     </androidx.cardview.widget.CardView>
 
@@ -25,16 +27,17 @@
         android:id="@+id/tvAnime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/anime_name"
-        android:textStyle="bold"
-        android:textSize="10dp"
         android:gravity="center"
-        />
+        android:text="@string/anime_name"
+        android:textSize="10dp"
+        android:textStyle="bold"
+        tools:ignore="SpUsage,TextSizeCheck" />
     <TextView
         android:id="@+id/tvEpisodes"
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/anime_name"
-        android:textSize="8sp"/>
+        android:textSize="8sp"
+        tools:ignore="SmallSp" />
 </LinearLayout>

@@ -16,7 +16,8 @@
         <ImageView
             android:id="@+id/ivAnimeImage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            tools:ignore="ContentDescription,ImageContrastCheck" />
 
     </androidx.cardview.widget.CardView>
 
@@ -57,6 +58,7 @@
         android:layout_gravity="center"
         android:textColor="@color/bottomBar_color"
         android:background="@drawable/accent_shape"
-        android:text="@string/done" />
+        android:text="@string/done"
+        tools:ignore="VisualLintButtonSize" />
 
 </LinearLayout>

@@ -36,6 +36,8 @@ public class home_tab extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        //set the status bar as this fragment created
+        getActivity().getWindow().setStatusBarColor(getResources().getColor(R.color.primary_color));
         view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_home_tab,container
                 ,false);
 
