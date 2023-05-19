@@ -4,112 +4,146 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/accent_color"
     android:orientation="vertical"
-    android:padding="15dp"
     tools:ignore="hardcodedtext"
     tools:context=".UpdateAct">
 
-    <com.google.android.material.textfield.TextInputLayout
+    <ImageView
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:src="@drawable/cat_logo"
+        tools:ignore="ContentDescription" />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bottom_stroke"
-        android:gravity="center_vertical"
-        android:padding="10dp"
-        app:hintTextColor="@color/accent_color"
-        android:layout_marginVertical="15dp">
+        android:text="UPDATE"
+        android:paddingHorizontal="25dp"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
 
-        <EditText
-            android:id="@+id/etFname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:hint="@string/first_name"
-            android:inputType="text"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bottom_stroke"
-        app:hintTextColor="@color/accent_color"
-        android:gravity="center_vertical"
-        android:layout_marginVertical="15dp"
-        android:padding="10dp">
-
-        <EditText
-            android:id="@+id/etLname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:hint="@string/last_name"
-            android:inputType="text"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bottom_stroke"
-        app:hintTextColor="@color/accent_color"
-        android:gravity="center_vertical"
-        android:layout_marginVertical="15dp"
-        android:padding="10dp">
-
-        <EditText
-            android:id="@+id/etPass"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/transparent"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            tools:ignore="VisualLintTextFieldSize,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bottom_stroke"
-        app:hintTextColor="@color/accent_color"
-        android:gravity="center_vertical"
-        android:layout_marginVertical="15dp"
-        android:padding="10dp">
-
-        <EditText
-            android:id="@+id/etConPass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:hint="@string/confirm_password"
-            android:inputType="textPassword"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck,VisualLintTextFieldSize" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        android:text="FILL UP YOU WANT TO UPDATE"
+        android:paddingHorizontal="25dp"
+        android:layout_marginBottom="10dp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/login_shape"
+        android:paddingHorizontal="15dp">
 
-        <Button
-            android:id="@+id/btCancel"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_style"
-            android:layout_marginHorizontal="5dp"
-            android:text="Cancel"/>
+            android:background="@drawable/bottom_stroke"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            app:hintTextColor="@color/accent_color"
+            android:layout_marginVertical="15dp">
 
-        <Button
-            android:id="@+id/btUpdate"
-            android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/etFname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="@string/first_name"
+                android:inputType="text"
+                tools:ignore="Autofill,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_style"
-            android:backgroundTint="@color/accent_color"
-            android:layout_marginHorizontal="5dp"
-            android:text="Update"/>
+            android:background="@drawable/bottom_stroke"
+            app:hintTextColor="@color/accent_color"
+            android:gravity="center_vertical"
+            android:layout_marginVertical="15dp"
+            android:padding="10dp">
+
+            <EditText
+                android:id="@+id/etLname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="@string/last_name"
+                android:inputType="text"
+                tools:ignore="Autofill,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_stroke"
+            app:hintTextColor="@color/accent_color"
+            android:gravity="center_vertical"
+            android:layout_marginVertical="15dp"
+            android:padding="10dp">
+
+            <EditText
+                android:id="@+id/etPass"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                tools:ignore="Autofill,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_stroke"
+            app:hintTextColor="@color/accent_color"
+            android:gravity="center_vertical"
+            android:layout_marginVertical="15dp"
+            android:padding="10dp">
+
+            <EditText
+                android:id="@+id/etConPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="@string/confirm_password"
+                android:inputType="textPassword"
+                tools:ignore="Autofill,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_style"
+                android:layout_marginHorizontal="5dp"
+                android:text="Cancel"
+                tools:ignore="ButtonStyle" />
+
+            <Button
+                android:id="@+id/btUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/border_style"
+                android:backgroundTint="@color/accent_color"
+                android:text="Update"
+                android:textColor="@color/primary_color"
+                tools:ignore="ButtonStyle" />
+        </LinearLayout>
     </LinearLayout>
+
 
 </LinearLayout>

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/accent_color"
     tools:context=".search_activity"
     tools:ignore="hardcodedtext">
 
@@ -13,6 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cat_logo"/>
 
         <ImageView
             android:id="@+id/ivAnimeImage"
@@ -62,7 +67,7 @@
             android:background="@drawable/login_shape"
             android:padding="15dp"
             android:scrollbars="none"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -126,8 +131,10 @@
 
 
                 </LinearLayout>
+
             </LinearLayout>
         </ScrollView>
+
     </RelativeLayout>
 
 

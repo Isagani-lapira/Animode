@@ -1,8 +1,12 @@
 package com.example.animode;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,7 +28,7 @@ public class UpdateAct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
 
-        getWindow().setStatusBarColor(getResources().getColor(R.color.transparent));
+        getWindow().setStatusBarColor(getColor(R.color.accent_color));
         initialize();
         listener();
     }
@@ -49,8 +53,7 @@ public class UpdateAct extends AppCompatActivity {
     }
     private void listener() {
         btCancel.setOnClickListener(v-> startActivity(new Intent(context, homepage.class)));
-
-        btUpdate.setOnClickListener(v-> updateInfo());
+        btUpdate.setOnClickListener(v-> proceed());
     }
 
     private void updateInfo() {
@@ -60,33 +63,60 @@ public class UpdateAct extends AppCompatActivity {
         String userID = FirebaseAuth.getInstance().getUid();
         DocumentReference docRef = fbStore.collection("Persons").document(userID);
 
-        docRef.get()
-                .addOnSuccessListener(documentSnapshot -> {
+        //fields
+        String FName = etFname.getText().toString();
+        String LName = etLname.getText().toString();
+        String Pass = etPass.getText().toString();
 
-                    String FName = etFname.getText().toString();
-                    String LName = etLname.getText().toString();
-                    String Pass = etPass.getText().toString();
+        if(FName.equals("") && LName.equals("") && Pass.equals(""))
+            Toast.makeText(context, "Complete the fields", Toast.LENGTH_SHORT).show();
+        else{
+            docRef.get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            Map<String, Object> newData = new HashMap<>();
+                            newData.put("fname", FName);
+                            newData.put("lname", LName);
+                            newData.put("password", Pass);
 
-                    if(documentSnapshot.exists()){
-                        Map<String,Object> newData = new HashMap<>();
-                        newData.put("fname",FName);
-                        newData.put("lname",LName);
-                        newData.put("password",Pass);
+                            //update new data
+                            docRef.update(newData)
+                                    .addOnSuccessListener(success -> {
+                                        //update first the password
+                                        auth.updatePassword(Pass).addOnSuccessListener(unused -> {
+                                            Toast.makeText(context, "Updated successfully", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(context, homepage.class));
+                                        }).addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show());
 
-                        docRef.update(newData)
-                                .addOnSuccessListener(success-> {
-                                    //update first the password
-                                    auth.updatePassword(Pass).addOnSuccessListener(unused -> {
-                                        Toast.makeText(context, "Updated successfully", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(context, homepage.class));
-                                    }).addOnFailureListener(e -> {
-                                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    });
+                                    })
+                                    .addOnFailureListener(failure -> Toast.makeText(context, failure.getMessage(), Toast.LENGTH_SHORT).show());
+                        }
+                    })
+                    .addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show());
+        }
 
-                                })
-                                .addOnFailureListener(failure-> Toast.makeText(context, failure.getMessage(), Toast.LENGTH_SHORT).show());
-                    }
-                })
-                .addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show());
+        
+    }
+
+    //alert dialog
+    private void proceed(){
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View customLayout = inflater.inflate(R.layout.alert_dial_layout, null);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context,R.style.TransparentAlertDialogTheme);
+        builder.setView(customLayout);
+
+        Dialog dialog = builder.create();
+        dialog.show();
+
+        Button btCancel = customLayout.findViewById(R.id.btCancel);
+        Button btOkay = customLayout.findViewById(R.id.btOkay);
+
+        //cancel the log out
+        btCancel.setOnClickListener(v-> dialog.dismiss());
+        //log out the user
+        btOkay.setOnClickListener(v-> updateInfo());
+
     }
 }
+

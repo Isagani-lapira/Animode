@@ -52,8 +52,7 @@ public class search_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        // Listen for text changes in the search bar
-
+        getWindow().setStatusBarColor(getResources().getColor(R.color.accent_color));
         initialize();
         listener();
     }
